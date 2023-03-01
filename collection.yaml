@@ -1,0 +1,58 @@
+format_version: 0.2.2
+type: collection
+name: Icy Collection
+tags: [icy, bioimage.io]
+description: "Resources for BioImgage.IO curated by the Icy team."
+
+authors:
+  - name: "Carlos Garcia-López-de-Haro"
+    github_user: carlosuc3m
+    affiliation: "Carlos company"
+  - name: "Jean-Yves Tinevez"
+    github_user: tinevez
+    affiliation: "Institut Pasteur"
+    orcid: "0000-0002-7104-7418"
+
+maintainers:
+  - name: "Carlos Garcia-López-de-Haro"
+    github_user: carlosuc3m
+    affiliation: "Carlos company"
+  - name: "Jean-Yves Tinevez"
+    github_user: tinevez
+    affiliation: "Institut Pasteur"
+    orcid: "0000-0002-7104-7418"
+
+config: 
+  id: icy
+  name: icy
+  tags:
+    - icy
+  logo: https://gitlab.pasteur.fr/bia/icy/-/raw/master/src/main/resources/image/logo.png
+  icon: https://gitlab.pasteur.fr/bia/icy/-/raw/master/src/main/resources/image/logo.png
+  splash_title: icy
+  splash_subtitle: "Icy is an open community platform for bioimage informatics"
+  splash_feature_list:
+  explore_button_text: "Start Exploring"
+  background_image: "static/img/zoo-background.svg"
+  resource_types:
+    - application
+  default_type: model
+  url_root: https://gitlab.pasteur.fr/bia/icy-bioimage-io-resources
+
+collection:
+  - id: icy
+    name: icy
+    description: "Icy is an open community platform for bioimage informatics"
+    format_version: 0.2.2
+    source: https://gitlab.pasteur.fr/bia/
+    type: application
+    authors:
+      - name: the Icy Team
+    maintainers:
+      - name: the Icy Team
+        github_user: None
+    cite:
+      - text: "Icy: an open bioimage informatics platform for extended reproducible research. Nat Methods 9, 690–696 (2012)."
+        doi: 10.1038/nmeth.2075
+    documentation: https://icy.bioimageanalysis.org/
+
