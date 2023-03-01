@@ -27,8 +27,8 @@ config:
   name: icy
   tags:
     - icy
-  logo: https://gitlab.pasteur.fr/bia/icy/-/raw/master/src/main/resources/image/logo.png
-  icon: https://gitlab.pasteur.fr/bia/icy/-/raw/master/src/main/resources/image/logo.png
+  logo: https://raw.githubusercontent.com/bioimage-io/icy-bioimage-io/main/logo.png
+  icon: https://raw.githubusercontent.com/bioimage-io/icy-bioimage-io/main/logo.png
   splash_title: icy
   splash_subtitle: "Icy is an open community platform for bioimage informatics"
   splash_feature_list:
@@ -37,7 +37,7 @@ config:
   resource_types:
     - application
   default_type: model
-  url_root: https://gitlab.pasteur.fr/bia/icy-bioimage-io-resources
+  url_root: https://github.com/bioimage-io/icy-bioimage-io
 
 collection:
   - id: icy
