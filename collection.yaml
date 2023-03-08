@@ -24,7 +24,7 @@ maintainers:
 
 config: 
   id: icy
-  name: icy
+  name: Icy
   tags:
     - icy
   logo: https://raw.githubusercontent.com/bioimage-io/icy-bioimage-io/main/icy_logo.svg
@@ -40,8 +40,8 @@ config:
   url_root: https://github.com/bioimage-io/icy-bioimage-io
 
 collection:
-  - id: icy
-    name: icy
+  - id: Icy
+    name: Icy
     description: "Icy is an open community platform for bioimage informatics"
     format_version: 0.2.2
     source: https://gitlab.pasteur.fr/bia/
