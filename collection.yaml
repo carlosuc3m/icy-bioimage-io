@@ -29,7 +29,7 @@ config:
     - icy
   logo: https://raw.githubusercontent.com/bioimage-io/icy-bioimage-io/main/icy_logo.svg
   icon: https://raw.githubusercontent.com/bioimage-io/icy-bioimage-io/main/icy_logo.svg
-  splash_title: icy
+  splash_title: Icy
   splash_subtitle: "Icy is an open community platform for bioimage informatics"
   splash_feature_list:
   explore_button_text: "Start Exploring"
