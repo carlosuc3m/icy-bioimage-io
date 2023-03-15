@@ -36,11 +36,12 @@ config:
   background_image: "static/img/zoo-background.svg"
   resource_types:
     - application
+    - model
   default_type: model
-  url_root: https://github.com/bioimage-io/icy-bioimage-io
+  url_root: https://github.com/bioimage-io/icy-bioimage-io/blob/main
 
 collection:
-  - id: Icy
+  - id: icy
     name: Icy
     description: "Icy is an open community platform for bioimage informatics"
     format_version: 0.2.2
