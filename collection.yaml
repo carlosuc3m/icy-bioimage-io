@@ -27,8 +27,8 @@ config:
   name: Icy
   tags:
     - icy
-  logo: https://raw.githubusercontent.com/bioimage-io/icy-bioimage-io/main/icy_logo.svg
-  icon: https://raw.githubusercontent.com/bioimage-io/icy-bioimage-io/main/icy_logo.svg
+  logo: https://raw.githubusercontent.com/Icy-imaging/icy-bioimage-io/main/icy_logo.svg
+  icon: https://raw.githubusercontent.com/Icy-imaging/icy-bioimage-io/main/icy_logo.svg
   splash_title: Icy
   splash_subtitle: "Icy is an open community platform for bioimage informatics"
   splash_feature_list:
@@ -38,7 +38,7 @@ config:
     - application
     - model
   default_type: model
-  url_root: https://github.com/bioimage-io/icy-bioimage-io/blob/main
+  url_root: https://github.com/Icy-imaging/icy-bioimage-io/blob/main
 
 collection:
   - id: icy
@@ -56,6 +56,6 @@ collection:
       - text: "Icy: an open bioimage informatics platform for extended reproducible research. Nat Methods 9, 690–696 (2012)."
         doi: 10.1038/nmeth.2075
     documentation: https://icy.bioimageanalysis.org/
-    covers: ["https://raw.githubusercontent.com/bioimage-io/icy-bioimage-io/main/icy_logo.svg"]
-    icon: https://raw.githubusercontent.com/bioimage-io/icy-bioimage-io/main/icy_logo.svg
+    covers: ["https://raw.githubusercontent.com/Icy-imaging/icy-bioimage-io/main/icy_logo.svg"]
+    icon: https://raw.githubusercontent.com/Icy-imaging/icy-bioimage-io/main/icy_logo.svg
 
