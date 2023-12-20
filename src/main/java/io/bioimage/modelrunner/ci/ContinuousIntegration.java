@@ -28,7 +28,7 @@ import java.nio.file.Path;
 import java.nio.file.PathMatcher;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -68,7 +68,7 @@ public class ContinuousIntegration {
 
 	
 	public static void runTests(Path rdfDir, String resourceID, String versionID, Path summariesDir, String postfix) throws IOException {
-		HashMap<String, String> summaryDefaults = new HashMap<String, String>();
+		LinkedHashMap<String, String> summaryDefaults = new LinkedHashMap<String, String>();
 		postfix = getJDLLVersion();
 		summaryDefaults.put("JDLL_VERSION", postfix);
 		
@@ -81,7 +81,7 @@ public class ContinuousIntegration {
 			String error = null;
 			String status = null;
 			
-			Map<String, Object> rdf = new HashMap<String, Object>();
+			Map<String, Object> rdf = new LinkedHashMap<String, Object>();
 			try {
 				rdf = YAMLUtils.load(rdfPath.toAbsolutePath().toString());
 			} catch (Exception ex) {
@@ -103,24 +103,25 @@ public class ContinuousIntegration {
 			}
 			
 			if (status != null) {
-				Map<String, String> summary = new HashMap<String, String>();
-				summary.put("name", testName);
-				summary.put("status", status);
-				summary.put("error", error);
-				summary.put("source_name", rdfPath.toAbsolutePath().toString());
-				summary.putAll(summaryDefaults);
+				List<Object> summary = new ArrayList<Object>();
+				Map<String, String> summaryMap = new LinkedHashMap<String, String>();
+				summaryMap.put("name", testName);
+				summaryMap.put("status", status);
+				summaryMap.put("error", error);
+				summaryMap.put("source_name", rdfPath.toAbsolutePath().toString());
+				summaryMap.putAll(summaryDefaults);
 				
 				writeSummaries(summariesDir.toAbsolutePath() + File.separator + rdID + File.separator + "test_summary_" + postfix + ".yaml", summary);
 				continue;
 			}
 			
-			Map<String, Object> summariesPerWeightFormat = new HashMap<String, Object>();
+			Map<String, Object> summariesPerWeightFormat = new LinkedHashMap<String, Object>();
 			
 			
 			ModelWeight weights = ModelWeight.build((Map<String, Object>) weightFormats);
 			
 			for (WeightFormat ww : weights.gettAllSupportedWeightObjects()) {
-				Map<String, String> summaryWeightFormat = new HashMap<String, String>();
+				Map<String, String> summaryWeightFormat = new LinkedHashMap<String, String>();
 				try {
 					
 				} catch (Exception ex) {
@@ -165,6 +166,13 @@ public class ContinuousIntegration {
 			
 			writeSummaries(summariesDir.toAbsolutePath() + File.separator + rdID + File.separator + "test_summary_" + postfix + ".yaml", chosenSummaries);
 		}
+	}
+	
+	private static void writeSummaries(String summariesPath, List<Object> summaries) throws IOException {
+		Path path = Paths.get(summariesPath).getParent();
+		if (path != null && !Files.exists(path))
+            Files.createDirectories(path);
+		YAMLUtils.writeYamlFile(summariesPath, summaries);
 	}
 	
 	/**
