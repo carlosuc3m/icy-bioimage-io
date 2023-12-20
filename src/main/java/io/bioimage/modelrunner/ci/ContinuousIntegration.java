@@ -36,8 +36,12 @@ import java.util.jar.Manifest;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import io.bioimage.modelrunner.bioimageio.BioimageioRepo;
+import io.bioimage.modelrunner.bioimageio.description.ModelDescriptor;
+import io.bioimage.modelrunner.bioimageio.description.exceptions.ModelSpecsException;
 import io.bioimage.modelrunner.bioimageio.description.weights.ModelWeight;
 import io.bioimage.modelrunner.bioimageio.description.weights.WeightFormat;
+import io.bioimage.modelrunner.bioimageio.download.DownloadModel;
 import io.bioimage.modelrunner.tensor.Tensor;
 import io.bioimage.modelrunner.utils.Constants;
 import io.bioimage.modelrunner.utils.YAMLUtils;
@@ -80,6 +84,7 @@ public class ContinuousIntegration {
 			String testName = "Reproduce ouptuts with JDLL " + postfix;
 			String error = null;
 			String status = null;
+			String traceback = null;
 			
 			Map<String, Object> rdf = new LinkedHashMap<String, Object>();
 			try {
@@ -101,6 +106,19 @@ public class ContinuousIntegration {
 				status = "failed";
 				error = "Missing/Invalid weight formats for " + rdID;
 			}
+			ModelWeight weights = null;
+			try {
+				weights = ModelWeight.build((Map<String, Object>) weightFormats);
+			} catch (Exception ex) {
+				status = "failed";
+				error = "Missing/Invalid weight formats for " + rdID;
+				traceback = ex.toString();
+			}
+			
+			if (weights != null && weights.gettAllSupportedWeightObjects().size() == 0) {
+				status = "failed";
+				error = "Missing/Invalid weight formats. No supported weigths found for " + rdID;
+			}
 			
 			if (status != null) {
 				List<Object> summary = new ArrayList<Object>();
@@ -109,6 +127,8 @@ public class ContinuousIntegration {
 				summaryMap.put("status", status);
 				summaryMap.put("error", error);
 				summaryMap.put("source_name", rdfPath.toAbsolutePath().toString());
+				if (traceback != null)
+					summaryMap.put("traceback", traceback);
 				summaryMap.putAll(summaryDefaults);
 				
 				writeSummaries(summariesDir.toAbsolutePath() + File.separator + rdID + File.separator + "test_summary_" + postfix + ".yaml", summary);
@@ -118,7 +138,6 @@ public class ContinuousIntegration {
 			Map<String, Object> summariesPerWeightFormat = new LinkedHashMap<String, Object>();
 			
 			
-			ModelWeight weights = ModelWeight.build((Map<String, Object>) weightFormats);
 			
 			for (WeightFormat ww : weights.gettAllSupportedWeightObjects()) {
 				Map<String, String> summaryWeightFormat = new LinkedHashMap<String, String>();
@@ -191,4 +210,94 @@ public class ContinuousIntegration {
         }
         return version;
     }
+	
+	private static List<Object> testModel(String modelRdf, WeightFormat weightFormat) {
+		int decimal = 4;
+		return testResource(modelRdf, weightFormat, decimal, "model");
+	}
+	
+	private static List<Object> testResource(String rdf, WeightFormat weightFormat, int decimal, String expectedType) {
+		String error = null;
+		String traceback = null;
+		ModelDescriptor rd = null;
+		try {
+			rd = ModelDescriptor.readFromLocalFile(rdf, false);
+		} catch (ModelSpecsException e) {
+			error = e.toString();
+			traceback = e.toString();
+		}
+
+		List<Object> tests = new ArrayList<Object>();
+		Map<String, String> loadTest = new LinkedHashMap<String, String>();
+		loadTest.put("name", "load resource description");
+		loadTest.put("status", error == null ? "passed" : "failed");
+		loadTest.put("error", error);
+		loadTest.put("source_name", rdf);
+		loadTest.put("traceback", traceback);
+		loadTest.put("JDLL_VERSION", getJDLLVersion());
+		
+		tests.add(loadTest);
+		
+		if (rd != null) 
+			tests.add(testExpectedResourceType(rd, expectedType));
+		if (rd != null && rd.getType().equals("model")) {
+			tests.add(testModelDownload(rd));
+			tests.add(testModelInference(rd, weightFormat, decimal));
+		}
+	}
+	
+	private static Map<String, String> testExpectedResourceType(ModelDescriptor rd,  String type) {
+		boolean yes = rd.getType().equals(type);
+		Map<String, String> typeTest = new LinkedHashMap<String, String>();
+		typeTest.put("name", "has expected resource type");
+		typeTest.put("status", yes ? "passed" : "failed");
+		typeTest.put("error", yes ? null : "expected type was " + type + " but found " + rd.getType());
+		typeTest.put("source_name", rd.getName());
+		typeTest.put("traceback", null);
+		typeTest.put("JDLL_VERSION", getJDLLVersion());
+		return typeTest;
+	}
+	
+	private static Map<String, String> testModelDownload(ModelDescriptor rd) {
+		String error = null;
+		try {
+			BioimageioRepo br = BioimageioRepo.connect();
+			String folder = br.downloadByName(rd.getName(), "models");
+			rd.addModelPath(Paths.get(folder));
+		} catch (Exception ex) {
+			error = ex.toString();
+		}
+		Map<String, String> downloadTest = new LinkedHashMap<String, String>();
+		downloadTest.put("name", "JDLL is able to download model");
+		downloadTest.put("status", error == null ? "passed" : "failed");
+		downloadTest.put("error", error);
+		downloadTest.put("source_name", rd.getName());
+		downloadTest.put("JDLL_VERSION", getJDLLVersion());
+		return downloadTest;
+	}
+	
+	private static Map<String, String> testModelInference(ModelDescriptor rd, WeightFormat ww, int decimal) {
+		try {
+		DownloadModel dm = DownloadModel.build(rd);
+		dm.downloadModel();
+		} catch (Exception ex) {
+			
+		}
+		
+		
+		for (int i = 0; i < rd.getInputTensors().size()) {
+			RandomAccessibleInterval<T> rai = DecodeNumpy.retrieveImgLib2FromNpy(rd.test);
+			Tensor<T> inputTensor = Tensor
+		}
+		
+		boolean yes = rd.getType().equals(type);
+		Map<String, String> typeTest = new LinkedHashMap<String, String>();
+		typeTest.put("name", "has expected resource type");
+		typeTest.put("status", yes ? "passed" : "failed");
+		typeTest.put("error", yes ? null : "expected type was " + type + " but found " + rd.getType());
+		typeTest.put("source_name", rd.getName());
+		typeTest.put("traceback", null);
+		typeTest.put("JDLL_VERSION", getJDLLVersion());
+		return typeTest;
+	}
 }
