@@ -63,14 +63,14 @@ public class ContinuousIntegration {
     }
 
 	
-	public static void runTests(Path rdfDir, String resourceID, String versionID, Path summariesDir, String postfix) {
+	public static void runTests(Path rdfDir, String resourceID, String versionID, Path summariesDir, String postfix) throws IOException {
 		HashMap<String, String> summaryDefaults = new HashMap<String, String>();
-		postFix = getJDLLVersion();
+		postfix = getJDLLVersion();
 		summaryDefaults.put("JDLL_VERSION", postfix);
 		
 		PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:" + resourceID + File.separator + versionID + File.separator + Constants.RDF_FNAME);
 
-        List<Path> rdfFiles = Files.walk(rdfDir).collect(Collectors.toList());
+        List<Path> rdfFiles = Files.walk(rdfDir).filter(matcher::matches).collect(Collectors.toList());
 		
 		for (Path rdfPath : rdfFiles) {
 			String testName = "Reproduce ouptuts with JDLL " + postfix;
@@ -84,9 +84,29 @@ public class ContinuousIntegration {
 				error = "Unable to load " + Constants.RDF_FNAME + ": " + ex.toString();
 				status = "failed";
 			}
+
+			Object rdID = rdf.get("id");
+			Object type = rdf.get("type");
+			Object weightFormats = rdf.get("weights");
+			if (rdID == null || !(rdID instanceof String)) {
+				System.out.println("Invalid RDF. Missing/Invalid 'id' in rdf: " + rdfPath.toString());
+			} else if (type == null || !(type instanceof String) || !((String) type).equals("model")) {
+				status = "skipped";
+				error = "not a model RDF";
+			} else if (weightFormats == null || !(weightFormats instanceof List)) {
+				status = "failed";
+				error = "Missing/Invalid weight formats for " + rdID;
+			}
+			
+			if (status != null) {
+				TestSummary summary = new TestSummary();
+				
+				writeSummaries(summariesDir.toAbsolutePath() + File.separator + rdID + File.separator + "test_summary_" + postfix + ".yaml", summary);
+				continue;
+			}
+			
 		}
 
-		
 		
 	}
 	
