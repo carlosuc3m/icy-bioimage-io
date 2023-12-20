@@ -27,13 +27,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.PathMatcher;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.jar.Manifest;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import io.bioimage.modelrunner.bioimageio.description.weights.ModelWeight;
+import io.bioimage.modelrunner.bioimageio.description.weights.WeightFormat;
 import io.bioimage.modelrunner.tensor.Tensor;
 import io.bioimage.modelrunner.utils.Constants;
 import io.bioimage.modelrunner.utils.YAMLUtils;
@@ -79,7 +83,7 @@ public class ContinuousIntegration {
 			
 			Map<String, Object> rdf = new HashMap<String, Object>();
 			try {
-				rdf = YAMLUtils.load(rdfPath.toString());
+				rdf = YAMLUtils.load(rdfPath.toAbsolutePath().toString());
 			} catch (Exception ex) {
 				error = "Unable to load " + Constants.RDF_FNAME + ": " + ex.toString();
 				status = "failed";
@@ -99,15 +103,68 @@ public class ContinuousIntegration {
 			}
 			
 			if (status != null) {
-				TestSummary summary = new TestSummary();
+				Map<String, String> summary = new HashMap<String, String>();
+				summary.put("name", testName);
+				summary.put("status", status);
+				summary.put("error", error);
+				summary.put("source_name", rdfPath.toAbsolutePath().toString());
+				summary.putAll(summaryDefaults);
 				
 				writeSummaries(summariesDir.toAbsolutePath() + File.separator + rdID + File.separator + "test_summary_" + postfix + ".yaml", summary);
 				continue;
 			}
 			
-		}
+			Map<String, Object> summariesPerWeightFormat = new HashMap<String, Object>();
+			
+			
+			ModelWeight weights = ModelWeight.build((Map<String, Object>) weightFormats);
+			
+			for (WeightFormat ww : weights.gettAllSupportedWeightObjects()) {
+				Map<String, String> summaryWeightFormat = new HashMap<String, String>();
+				try {
+					
+				} catch (Exception ex) {
+					summaryWeightFormat.put("name", testName);
+					summaryWeightFormat.put("status", "failed");
+					summaryWeightFormat.put("error", ex.toString());
+					summaryWeightFormat.put("traceback", ex.toString());
+					summaryWeightFormat.put("source_name", rdfPath.toAbsolutePath().toString());
+					summaryWeightFormat.putAll(summaryDefaults);
+				}
+				summariesPerWeightFormat.put(ww.getFramework(), summaryWeightFormat);
+			}
 
-		
+			List<Object> passedReproducedSummaries = new ArrayList<Object>();
+			List<Object> failedReproducedSummaries = new ArrayList<Object>();
+			List<Object> otherSummaries = new ArrayList<Object>();
+			List<String> seenTests = new ArrayList<String>();
+			
+			for (Entry<String, Object> entry : summariesPerWeightFormat.entrySet()) {
+				String wf = entry.getKey();
+				List<Map<String, String>> s = (List<Map<String, String>>) entry.getValue();
+				for (Map<String, String> ss : s) {
+					boolean isOther = !ss.get("name").equals("reproduce test outputs from test inputs");
+					if (isOther && seenTests.contains(ss.toString())) {
+						continue;
+					}
+					ss.put("name", ss.get("name") + " (" + wf + ")");
+					if (isOther) {
+						seenTests.add(ss.toString());
+	                    otherSummaries.add(ss);
+	                    continue;
+					}
+					if (status.equals("passed")) passedReproducedSummaries.add(ss);
+					else failedReproducedSummaries.add(ss);
+				}
+			}
+			
+			List<Object> chosenSummaries = new ArrayList<Object>();
+			chosenSummaries.addAll(passedReproducedSummaries);
+			chosenSummaries.addAll(failedReproducedSummaries);
+			chosenSummaries.addAll(otherSummaries);
+			
+			writeSummaries(summariesDir.toAbsolutePath() + File.separator + rdID + File.separator + "test_summary_" + postfix + ".yaml", chosenSummaries);
+		}
 	}
 	
 	/**
