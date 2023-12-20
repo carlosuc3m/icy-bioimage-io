@@ -36,15 +36,26 @@ import java.util.jar.Manifest;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.bioimageanalysis.icy.deepicy.model.execution.processing.JavaProcessing;
+
 import io.bioimage.modelrunner.bioimageio.BioimageioRepo;
 import io.bioimage.modelrunner.bioimageio.description.ModelDescriptor;
+import io.bioimage.modelrunner.bioimageio.description.TransformSpec;
 import io.bioimage.modelrunner.bioimageio.description.exceptions.ModelSpecsException;
 import io.bioimage.modelrunner.bioimageio.description.weights.ModelWeight;
 import io.bioimage.modelrunner.bioimageio.description.weights.WeightFormat;
 import io.bioimage.modelrunner.bioimageio.download.DownloadModel;
+import io.bioimage.modelrunner.engine.EngineInfo;
+import io.bioimage.modelrunner.model.Model;
+import io.bioimage.modelrunner.numpy.DecodeNumpy;
 import io.bioimage.modelrunner.tensor.Tensor;
 import io.bioimage.modelrunner.utils.Constants;
 import io.bioimage.modelrunner.utils.YAMLUtils;
+import net.imglib2.RandomAccessibleInterval;
+import net.imglib2.loops.LoopBuilder;
+import net.imglib2.type.NativeType;
+import net.imglib2.type.numeric.RealType;
+import net.imglib2.type.numeric.real.FloatType;
 
 /**
  * 
@@ -276,25 +287,69 @@ public class ContinuousIntegration {
 		return downloadTest;
 	}
 	
-	private static Map<String, String> testModelInference(ModelDescriptor rd, WeightFormat ww, int decimal) {
-		try {
-		DownloadModel dm = DownloadModel.build(rd);
-		dm.downloadModel();
-		} catch (Exception ex) {
-			
+	private static < T extends RealType< T > & NativeType< T > >
+	Map<String, String> testModelInference(ModelDescriptor rd, WeightFormat ww, int decimal) {
+		Map<String, String> inferTest = new LinkedHashMap<String, String>();
+		inferTest.put("name", "reproduce test inputs from test outptus for " + ww.getFramework());
+		inferTest.put("source_name", rd.getName());
+		inferTest.put("JDLL_VERSION", getJDLLVersion());
+		if (rd.getModelPath() == null) {
+			inferTest.put("status", "failed");
+			inferTest.put("error", "model was not correctly downloaded");
+			return inferTest;
+		}
+		if (rd.getInputTensors().size() != rd.getTestInputs().size()) {
+			inferTest.put("status", "failed");
+			inferTest.put("error", "the number of inputs should be the same as the number of test inputs,"
+					+ rd.getInputTensors().size() + " vs " + rd.getTestInputs().size());
+			return inferTest;
+		} else if (rd.getOutputTensors().size() != rd.getTestOutputs().size()) {
+			inferTest.put("status", "failed");
+			inferTest.put("error", "the number of outputs should be the same as the number of test outputs"
+					+ rd.getOutputTensors().size() + " vs " + rd.getTestOutputs().size());
+			return inferTest;
+		} 
+
+		List<Tensor<?>> inps = new ArrayList<Tensor<?>>();
+		List<Tensor<?>> outs = new ArrayList<Tensor<?>>();
+		for (int i = 0; i < rd.getInputTensors().size(); i ++) {
+			RandomAccessibleInterval<T> rai = DecodeNumpy.retrieveImgLib2FromNpy(rd.getTestInputs().get(i).getLocalPath().toAbsolutePath().toString());
+			Tensor<T> inputTensor = Tensor.build(rd.getInputTensors().get(i).getName(), rd.getInputTensors().get(i).getAxesOrder(), rai);
+			if (rd.getInputTensors().get(i).getPreprocessing().size() > 0) {
+				TransformSpec transform = rd.getInputTensors().get(i).getPreprocessing().get(0);
+				JavaProcessing preproc = JavaProcessing.definePreprocessing(transform.getName(), transform.getKwargs());
+				inputTensor = preproc.execute(rd.getInputTensors().get(i), inputTensor);
+			}
+			inps.add(inputTensor);
+		}
+		for (int i = 0; i < rd.getOutputTensors().size(); i ++) {
+			Tensor<T> outputTensor = Tensor.buildEmptyTensor(rd.getOutputTensors().get(i).getName(), rd.getOutputTensors().get(i).getAxesOrder());
+			outs.add(outputTensor);
+		}
+		EngineInfo engineInfo = EngineInfo.defineCompatibleDLEngineWithRdfYamlWeights(ww);
+		Model model = Model.createDeepLearningModel(rd.getModelPath(), rd.getModelPath() + File.separator + ww.getSourceFileName(), engineInfo);
+		model.runModel(inps, outs);
+		
+		List<Float> maxDif = new ArrayList<Float>();
+		for (int i = 0; i < rd.getOutputTensors().size(); i ++) {
+			Tensor<T> tt = (Tensor<T>) outs.get(i);
+			if (rd.getOutputTensors().get(i).getPostprocessing().size() > 0) {
+				TransformSpec transform = rd.getOutputTensors().get(i).getPostprocessing().get(0);
+				JavaProcessing preproc = JavaProcessing.definePreprocessing(transform.getName(), transform.getKwargs());
+				tt = preproc.execute(rd.getInputTensors().get(i), tt);
+			}
+			RandomAccessibleInterval<T> rai = DecodeNumpy.retrieveImgLib2FromNpy(rd.getTestOutputs().get(i).getLocalPath().toAbsolutePath().toString());
+			LoopBuilder.setImages( tt.getData(), rai )
+			.multiThreaded().forEachPixel( ( j, o ) -> o.set( (T) new FloatType(o.getRealFloat() - j.getRealFloat())) )
+			rai.ma;
 		}
 		
 		
-		for (int i = 0; i < rd.getInputTensors().size()) {
-			RandomAccessibleInterval<T> rai = DecodeNumpy.retrieveImgLib2FromNpy(rd.test);
-			Tensor<T> inputTensor = Tensor
-		}
-		
-		boolean yes = rd.getType().equals(type);
+		boolean yes = rd.getType().equals("");
 		Map<String, String> typeTest = new LinkedHashMap<String, String>();
 		typeTest.put("name", "has expected resource type");
 		typeTest.put("status", yes ? "passed" : "failed");
-		typeTest.put("error", yes ? null : "expected type was " + type + " but found " + rd.getType());
+		typeTest.put("error", yes ? null : "expected type was " + "" + " but found " + rd.getType());
 		typeTest.put("source_name", rd.getName());
 		typeTest.put("traceback", null);
 		typeTest.put("JDLL_VERSION", getJDLLVersion());
