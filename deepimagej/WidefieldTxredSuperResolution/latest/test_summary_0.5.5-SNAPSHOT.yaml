@@ -1,2 +1,5 @@
-[
-  ]
+- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT
+  status: failed
+  error: Missing/Invalid weight formats for deepimagej/WidefieldTxredSuperResolution/latest
+  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/deepimagej/WidefieldTxredSuperResolution/latest/rdf.yaml
+  JDLL_VERSION: 0.5.5-SNAPSHOT
