@@ -67,7 +67,7 @@ public class ContinuousIntegration {
 	
 	public static void main(String[] args) {
 		
-		String pendingMatrix = args[1];
+		//String pendingMatrix = args[1];
         
         Path currentDir = Paths.get(ContinuousIntegration.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParent();
         Path rdfDir = currentDir.resolve("../bioimageio-gh-pages/rdfs").normalize();
