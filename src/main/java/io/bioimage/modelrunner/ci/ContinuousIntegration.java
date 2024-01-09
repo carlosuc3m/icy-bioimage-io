@@ -34,8 +34,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.jar.Manifest;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 
 import io.bioimage.modelrunner.bioimageio.BioimageioRepo;
 import io.bioimage.modelrunner.bioimageio.description.ModelDescriptor;
@@ -149,7 +147,7 @@ public class ContinuousIntegration {
 				List<Object> summariesWeightFormat = new ArrayList<Object>();
 				Map<String, String> summaryWeightFormat = new LinkedHashMap<String, String>();
 				try {
-					
+					summariesWeightFormat = testResource(rdfPath.toAbsolutePath().toString(), ww, 4, "model");
 				} catch (Exception ex) {
 					summaryWeightFormat.put("name", testName);
 					summaryWeightFormat.put("status", "failed");
