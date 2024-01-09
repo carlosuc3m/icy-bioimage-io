@@ -187,7 +187,7 @@ public class ContinuousIntegration {
 	                    otherSummaries.add(ss);
 	                    continue;
 					}
-					if (status.equals("passed")) passedReproducedSummaries.add(ss);
+					if (status != null && status.equals("passed")) passedReproducedSummaries.add(ss);
 					else failedReproducedSummaries.add(ss);
 				}
 			}
@@ -224,11 +224,6 @@ public class ContinuousIntegration {
         }
         return version;
     }
-	
-	private static List<Object> testModel(String modelRdf, WeightFormat weightFormat) {
-		int decimal = 4;
-		return testResource(modelRdf, weightFormat, decimal, "model");
-	}
 	
 	private static List<Object> testResource(String rdf, WeightFormat weightFormat, int decimal, String expectedType) {
 		String error = null;
