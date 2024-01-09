@@ -43,8 +43,10 @@ import io.bioimage.modelrunner.bioimageio.description.TransformSpec;
 import io.bioimage.modelrunner.bioimageio.description.exceptions.ModelSpecsException;
 import io.bioimage.modelrunner.bioimageio.description.weights.ModelWeight;
 import io.bioimage.modelrunner.bioimageio.description.weights.WeightFormat;
-import io.bioimage.modelrunner.bioimageio.download.DownloadModel;
 import io.bioimage.modelrunner.engine.EngineInfo;
+import io.bioimage.modelrunner.exceptions.LoadEngineException;
+import io.bioimage.modelrunner.exceptions.LoadModelException;
+import io.bioimage.modelrunner.exceptions.RunModelException;
 import io.bioimage.modelrunner.model.Model;
 import io.bioimage.modelrunner.numpy.DecodeNumpy;
 import io.bioimage.modelrunner.tensor.Tensor;
@@ -256,6 +258,7 @@ public class ContinuousIntegration {
 			tests.add(testModelDownload(rd));
 			tests.add(testModelInference(rd, weightFormat, decimal));
 		}
+		return tests;
 	}
 	
 	private static Map<String, String> testExpectedResourceType(ModelDescriptor rd,  String type) {
@@ -314,11 +317,21 @@ public class ContinuousIntegration {
 		List<Tensor<?>> inps = new ArrayList<Tensor<?>>();
 		List<Tensor<?>> outs = new ArrayList<Tensor<?>>();
 		for (int i = 0; i < rd.getInputTensors().size(); i ++) {
-			RandomAccessibleInterval<T> rai = DecodeNumpy.retrieveImgLib2FromNpy(rd.getTestInputs().get(i).getLocalPath().toAbsolutePath().toString());
+			RandomAccessibleInterval<T> rai;
+			try {
+				rai = DecodeNumpy.retrieveImgLib2FromNpy(rd.getTestInputs().get(i).getLocalPath().toAbsolutePath().toString());
+			} catch (IOException e) {
+				return failInferenceTest(rd.getName(), "unable to open test input: " + rd.getTestInputs().get(i).getString(), e.toString());
+			}
 			Tensor<T> inputTensor = Tensor.build(rd.getInputTensors().get(i).getName(), rd.getInputTensors().get(i).getAxesOrder(), rai);
 			if (rd.getInputTensors().get(i).getPreprocessing().size() > 0) {
 				TransformSpec transform = rd.getInputTensors().get(i).getPreprocessing().get(0);
-				JavaProcessing preproc = JavaProcessing.definePreprocessing(transform.getName(), transform.getKwargs());
+				JavaProcessing preproc;
+				try {
+					preproc = JavaProcessing.definePreprocessing(transform.getName(), transform.getKwargs());
+				} catch (ClassNotFoundException e) {
+					return failInferenceTest(rd.getName(), "pre-processing transformation not supported by JDLL: " + transform.getName(), e.toString());
+				}
 				inputTensor = preproc.execute(rd.getInputTensors().get(i), inputTensor);
 			}
 			inps.add(inputTensor);
@@ -327,32 +340,71 @@ public class ContinuousIntegration {
 			Tensor<T> outputTensor = Tensor.buildEmptyTensor(rd.getOutputTensors().get(i).getName(), rd.getOutputTensors().get(i).getAxesOrder());
 			outs.add(outputTensor);
 		}
-		EngineInfo engineInfo = EngineInfo.defineCompatibleDLEngineWithRdfYamlWeights(ww);
-		Model model = Model.createDeepLearningModel(rd.getModelPath(), rd.getModelPath() + File.separator + ww.getSourceFileName(), engineInfo);
-		model.runModel(inps, outs);
+		EngineInfo engineInfo;
+		try {
+			engineInfo = EngineInfo.defineCompatibleDLEngineWithRdfYamlWeights(ww);
+		} catch (IllegalArgumentException | IOException e) {
+			return failInferenceTest(rd.getName(), "selected weights not supported by JDLL: " + ww.getFramework(), e.toString());
+		}
+		Model model;
+		try {
+			model = Model.createDeepLearningModel(rd.getModelPath(), rd.getModelPath() + File.separator + ww.getSourceFileName(), engineInfo);
+			model.loadModel();
+		} catch (IllegalStateException | LoadEngineException | IOException | LoadModelException e) {
+			return failInferenceTest(rd.getName(), "unable to instantiate/load model", e.toString());
+		}
+		try {
+			model.runModel(inps, outs);
+		} catch (RunModelException e) {
+			return failInferenceTest(rd.getName(), "unable to run model", e.toString());
+		}
 
 		List<Double> maxDif = new ArrayList<Double>();
 		for (int i = 0; i < rd.getOutputTensors().size(); i ++) {
 			Tensor<T> tt = (Tensor<T>) outs.get(i);
 			if (rd.getOutputTensors().get(i).getPostprocessing().size() > 0) {
 				TransformSpec transform = rd.getOutputTensors().get(i).getPostprocessing().get(0);
-				JavaProcessing preproc = JavaProcessing.definePreprocessing(transform.getName(), transform.getKwargs());
+				JavaProcessing preproc;
+				try {
+					preproc = JavaProcessing.definePreprocessing(transform.getName(), transform.getKwargs());
+				} catch (ClassNotFoundException e) {
+					return failInferenceTest(rd.getName(), "post-processing transformation not supported by JDLL: " + transform.getName(), e.toString());
+				}
 				tt = preproc.execute(rd.getInputTensors().get(i), tt);
 			}
-			RandomAccessibleInterval<T> rai = DecodeNumpy.retrieveImgLib2FromNpy(rd.getTestOutputs().get(i).getLocalPath().toAbsolutePath().toString());
+			RandomAccessibleInterval<T> rai;
+			try {
+				rai = DecodeNumpy.retrieveImgLib2FromNpy(rd.getTestOutputs().get(i).getLocalPath().toAbsolutePath().toString());
+			} catch (IOException e) {
+				return failInferenceTest(rd.getName(), "unable to open test output: " + rd.getTestOutputs().get(i).getString(), e.toString());
+			}
 			LoopBuilder.setImages( tt.getData(), rai )
 			.multiThreaded().forEachPixel( ( j, o ) -> o.set( (T) new FloatType(o.getRealFloat() - j.getRealFloat())) );
+			double diff = computeMaxDiff(rai);
+			if (diff > Math.pow(10, -decimal))
+				return failInferenceTest(rd.getName(), "output number " + i + " produces a very different result, "
+						+ "the max difference is bigger than " + Math.pow(10, -decimal), null);
 			maxDif.add(computeMaxDiff(rai));
 		}
 		
 		
-		boolean yes = rd.getType().equals("");
 		Map<String, String> typeTest = new LinkedHashMap<String, String>();
-		typeTest.put("name", "has expected resource type");
-		typeTest.put("status", yes ? "passed" : "failed");
-		typeTest.put("error", yes ? null : "expected type was " + "" + " but found " + rd.getType());
+		typeTest.put("name", "reproduce test outputs from test inputs\"");
+		typeTest.put("status", "passed");
+		typeTest.put("error", null);
 		typeTest.put("source_name", rd.getName());
 		typeTest.put("traceback", null);
+		typeTest.put("JDLL_VERSION", getJDLLVersion());
+		return typeTest;
+	}
+	
+	private static Map<String, String> failInferenceTest(String sourceName, String error, String tb) {
+		Map<String, String> typeTest = new LinkedHashMap<String, String>();
+		typeTest.put("name", "reproduce test outputs from test inputs");
+		typeTest.put("status", "failed");
+		typeTest.put("error", error);
+		typeTest.put("source_name", sourceName);
+		typeTest.put("traceback", tb);
 		typeTest.put("JDLL_VERSION", getJDLLVersion());
 		return typeTest;
 	}
