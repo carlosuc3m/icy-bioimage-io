@@ -55,28 +55,27 @@ jobs:
     - name: Upload test summaries
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ matrix.v }}
-        path: dist
+        name: 0.5.5-SNAPSHOT
+        path: test_summaries
         retention-days: 1
 
 
 
   deploy:
     needs: [run]
-    if: needs.setup.outputs.pending_empty == 'no'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - uses: actions/download-artifact@v3
       with:
         path: artifacts
-    - name: merge ilastik test summaries  # (they differ by postfix)
+    - name: merge JDLL test summaries  # (they differ by postfix)
       run: |
-        mkdir dist
-        cp -r artifacts/*/* dist
+        mkdir test_summaries
+        cp -r artifacts/*/* test_summaries
     - name: Deploy test summaries to gh-pages 🚀
       uses: JamesIves/github-pages-deploy-action@v4.2.3
       with:
         clean: false
         branch: gh-pages
-        folder: dist
+        folder: test_summaries
