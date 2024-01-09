@@ -1,10 +1,2 @@
-- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT
-  status: failed
-  error: Missing/Invalid weight formats 1 for deepimagej/MU-Lux_CTC_PhC-C2DL-PSC/latest
-  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/deepimagej/MU-Lux_CTC_PhC-C2DL-PSC/latest/rdf.yaml
-  traceback: '{keras_hdf5={sha256=0cc15900861ed5e5e7a6254400a85ed6f9b5d488bf1204d1274d36386b239283,
-    source=https://zenodo.org/record/4155785/files/MU-Lux_CTC_unet_PhC-C2DL-PSC.h5},
-    tensorflow_saved_model_bundle={attachments={files=[./config.xml]}, sha256=994eb5b691f4621fb3bb2519667ad0b2cd8c23857cbddbacdce650da2493be42,
-    source=https://raw.githubusercontent.com/deepimagej/models/master/mu-lux_ctc_phc-c2dl-psc/tensorflow_saved_model_bundle.zip,
-    tensorflow_version=1.15}}'
-  JDLL_VERSION: 0.5.5-SNAPSHOT
+[
+  ]

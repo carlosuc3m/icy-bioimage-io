@@ -1,8 +1,2 @@
-- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT
-  status: failed
-  error: Missing/Invalid weight formats 1 for 10.5281/zenodo.8401064/8429203
-  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.8401064/8429203/rdf.yaml
-  traceback: '{pytorch_state_dict={architecture=plantseg.models.model.UNet3D, dependencies=conda:https://zenodo.org/api/records/8429203/files/dependencies.yaml/content,
-    kwargs={f_maps=16, in_channels=1, out_channels=2}, sha256=fd115b1cfd908774d4289bc78e944cec1ab58458d0aae6eb5792b4477be0e2fc,
-    source=https://zenodo.org/api/records/8429203/files/FOR2581_PlantSeg_Plant_Nuclei_3D.pytorch/content}}'
-  JDLL_VERSION: 0.5.5-SNAPSHOT
+[
+  ]

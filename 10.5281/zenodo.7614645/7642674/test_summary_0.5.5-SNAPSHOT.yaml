@@ -1,15 +1,2 @@
-- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT
-  status: failed
-  error: Missing/Invalid weight formats 1 for 10.5281/zenodo.7614645/7642674
-  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.7614645/7642674/rdf.yaml
-  traceback: '{onnx={opset_version=15, parent=pytorch_state_dict, sha256=55ad061651840fe4b6da6733c52402ae3296392f74fed8a9482e4bc62040938f,
-    source=https://zenodo.org/api/records/7642674/files/weights.onnx/content}, pytorch_state_dict={architecture=https://zenodo.org/api/records/7642674/files/model.py/content:HyLFM_Net,
-    architecture_sha256=fbd9428f7352a8c6bca8a47e9b85d9afe95edb35b716cc909f5cfc530f2280d3,
-    dependencies=conda:https://zenodo.org/api/records/7642674/files/environment.yaml/content,
-    kwargs={c_in_3d=64, c_res2d=[768, 768, 512, 256, u384, 512, 256], c_res3d=[32,
-    u16, 8, 8], init_fn=xavier_uniform, kernel2d=3, kernel3d=3, last_kernel2d=5, nnum=19,
-    z_out=49}, pytorch_version=1.7, sha256=cc85d6da3bcb8c6ec7bb46939399018e29cfe06c5c90b39786fa92f7cb5b4e95,
-    source=https://zenodo.org/api/records/7642674/files/weights.pt/content}, torchscript={parent=pytorch_state_dict,
-    pytorch_version=1.7, sha256=ec01e0c212b5eb422dda208af004665799637a2f2729d0ebf2e884e5d9966fc2,
-    source=https://zenodo.org/api/records/7642674/files/weights_torchscript.pt/content}}'
-  JDLL_VERSION: 0.5.5-SNAPSHOT
+[
+  ]

@@ -1,8 +1,2 @@
-- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT
-  status: failed
-  error: Missing/Invalid weight formats 1 for 10.5281/zenodo.7380171/7405349
-  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.7380171/7405349/rdf.yaml
-  traceback: '{tensorflow_saved_model_bundle={sha256=ae5d5287b90d4b5406f2b6de8e40f50faaf7336d38a2a91d9a66364897a82bed,
-    source=https://zenodo.org/api/records/7405349/files/drosophila-crb-d5.zip/content,
-    tensorflow_version=2.10}}'
-  JDLL_VERSION: 0.5.5-SNAPSHOT
+[
+  ]

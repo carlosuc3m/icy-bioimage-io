@@ -1,10 +1,2 @@
-- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT
-  status: failed
-  error: Missing/Invalid weight formats 1 for deepimagej/UNet2DGlioblastomaSegmentation/latest
-  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/deepimagej/UNet2DGlioblastomaSegmentation/latest/rdf.yaml
-  traceback: '{tensorflow_js={sha256=34a8002c671a8d64c6eee1395df921e8d55daa60ad843e07c5c62c9b6653c6cd,
-    source=https://raw.githubusercontent.com/deepimagej/tensorflow-js-models/main/u-net_glioblastoma_segmentation_tf_js_model/model.json},
-    tensorflow_saved_model_bundle={attachments={files=[./config.xml]}, sha256=480558c92ade371c0cca02bac46242e3da12f220ffe31b0811150dcf52b2e189,
-    source=https://zenodo.org/record/4155785/files/u-net_glioblastoma_segmentation_tf_model.zip,
-    tensorflow_version=1.13}}'
-  JDLL_VERSION: 0.5.5-SNAPSHOT
+[
+  ]

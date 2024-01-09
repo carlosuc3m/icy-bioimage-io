@@ -1,8 +1,2 @@
-- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT
-  status: failed
-  error: Missing/Invalid weight formats 1 for deepimagej/WidefieldTxredSuperResolution/latest
-  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/deepimagej/WidefieldTxredSuperResolution/latest/rdf.yaml
-  traceback: '{tensorflow_saved_model_bundle={attachments={files=[./config.xml]},
-    sha256=f8873ff5c48c4cb9c305851b938ec6d31719d86d2ee570f5f576725a8c35486c, source=https://raw.githubusercontent.com/deepimagej/models/master/widefield_txred_super-resolution/tensorflow_saved_model_bundle.zip,
-    tensorflow_version=1.15}}'
-  JDLL_VERSION: 0.5.5-SNAPSHOT
+[
+  ]

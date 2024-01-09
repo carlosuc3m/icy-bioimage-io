@@ -1,10 +1,2 @@
-- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT
-  status: failed
-  error: Missing/Invalid weight formats 1 for deepimagej/UNet2DHeLaSegmentation/latest
-  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/deepimagej/UNet2DHeLaSegmentation/latest/rdf.yaml
-  traceback: '{tensorflow_js={sha256=816f39edcc4a16aa60e8ea485c9eac31dc54181241252270ee5e2ae0bb71b49d,
-    source=https://raw.githubusercontent.com/deepimagej/tensorflow-js-models/main/u-net_hela_segmentation_tf_js_model/model.json},
-    tensorflow_saved_model_bundle={attachments={files=[./config.xml]}, sha256=dc00ad55637842dfcd9bdf04a48a763641cc70b3f20c1d851f43c850039653a3,
-    source=https://raw.githubusercontent.com/deepimagej/models/master/u-net_hela_segmentation/tensorflow_saved_model_bundle.zip,
-    tensorflow_version=1.13}}'
-  JDLL_VERSION: 0.5.5-SNAPSHOT
+[
+  ]

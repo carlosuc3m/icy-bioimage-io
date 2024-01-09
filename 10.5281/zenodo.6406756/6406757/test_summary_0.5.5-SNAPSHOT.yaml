@@ -1,12 +1,2 @@
-- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT
-  status: failed
-  error: Missing/Invalid weight formats 1 for 10.5281/zenodo.6406756/6406757
-  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.6406756/6406757/rdf.yaml
-  traceback: '{pytorch_state_dict={architecture=https://zenodo.org/api/records/6406757/files/unet.py/content:UNet2d,
-    architecture_sha256=64af2e39972beb94019a1c97d42b29a8d8827d1b0f0845207c3b82c1a242f354,
-    dependencies=conda:https://zenodo.org/api/records/6406757/files/environment.yaml/content,
-    kwargs={depth=4, final_activation=Sigmoid, gain=2, in_channels=1, initial_features=64,
-    out_channels=2, postprocessing=null, return_side_outputs=false}, sha256=1ff58b682498d943d36bb298e3547852a757553dcb7e426156db950069c2589b,
-    source=https://zenodo.org/api/records/6406757/files/weights.pt/content}, torchscript={sha256=79324231b6cf0b75e0b3953678f1f789776f80163d0a62a9b0340beba43d23ec,
-    source=https://zenodo.org/api/records/6406757/files/weights-torchscript.pt/content}}'
-  JDLL_VERSION: 0.5.5-SNAPSHOT
+[
+  ]

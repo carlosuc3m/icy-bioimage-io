@@ -1,12 +1,2 @@
-- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT
-  status: failed
-  error: Missing/Invalid weight formats 1 for deepimagej/FRUNet2DsEVSegmentation/latest
-  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/deepimagej/FRUNet2DsEVSegmentation/latest/rdf.yaml
-  traceback: '{keras_hdf5={sha256=5122cbff7451136102eabfc8c80771dbba5ec477d5dac186f729cdfbb4605ff6,
-    source=https://sandbox.zenodo.org/record/904786/files/fully_residual_dropout_segmentation.h5,
-    tensorflow_version=1.12}, tensorflow_js={sha256=eb27d8f3df23ce5d1d6ae4112cf36117c70a2257ca6f1b56869b9537fa60531e,
-    source=https://raw.githubusercontent.com/deepimagej/tensorflow-js-models/main/fru-net_sev_segmentation_tf_js_model/model.json},
-    tensorflow_saved_model_bundle={sha256=20bff1da933cc78027690fa311fea3e562cf60df1f0a2018527c45b9fafe8099,
-    source=https://sandbox.zenodo.org/record/904786/files/tensorflow_saved_model_bundle.zip,
-    tensorflow_version=1.12}}'
-  JDLL_VERSION: 0.5.5-SNAPSHOT
+[
+  ]

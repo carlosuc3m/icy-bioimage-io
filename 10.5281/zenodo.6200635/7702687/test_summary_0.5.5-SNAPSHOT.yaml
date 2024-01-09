@@ -1,7 +1,2 @@
-- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT
-  status: failed
-  error: Missing/Invalid weight formats 1 for 10.5281/zenodo.6200635/7702687
-  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.6200635/7702687/rdf.yaml
-  traceback: '{torchscript={pytorch_version=1.13.0, sha256=7e94848c41f2a8a2e881a194fbd0228af15d3df864313c53bf3b130e90ca0275,
-    source=https://zenodo.org/api/records/7702687/files/cell_model.pt/content}}'
-  JDLL_VERSION: 0.5.5-SNAPSHOT
+[
+  ]

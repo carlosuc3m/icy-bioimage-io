@@ -1,6 +1,6 @@
 - name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT
   status: failed
-  error: Missing/Invalid weight formats 2 for bioimageio/qupath/latest
+  error: Missing/Invalid weight formats for bioimageio/qupath/latest
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/bioimageio/qupath/latest/rdf.yaml
   traceback: java.lang.NullPointerException
   JDLL_VERSION: 0.5.5-SNAPSHOT
