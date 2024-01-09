@@ -46,11 +46,13 @@ jobs:
         maven-version: 3.9.5
     - name: Build with Maven
       run: mvn clean install
+
     - name: Generate Classpath (Unix)
-      run: echo "CLASSPATH=$(mvn -q exec:exec -Dexec.executable=echo -Dexec.args='%classpath')" >> $GITHUB_ENV
+      run: echo "CLASSPATH=$(mvn -q exec:exec -Dexec.executable=echo -Dexec.args='%classpath'):target/classes" >> $GITHUB_ENV
 
     - name: test with JDLL(Unix)
-      run: java -cp $CLASSPATH:target/classes io.bioimage.modelrunner.ci.ContinuousIntegration
+      run: java -cp $CLASSPATH io.bioimage.modelrunner.ci.ContinuousIntegration
+
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: test with JDLL
