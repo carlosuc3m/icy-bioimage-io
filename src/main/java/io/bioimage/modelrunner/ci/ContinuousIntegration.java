@@ -87,6 +87,7 @@ public class ContinuousIntegration {
         List<Path> rdfFiles = Files.walk(rdfDir).filter(matcher::matches).collect(Collectors.toList());
 		
 		for (Path rdfPath : rdfFiles) {
+			System.out.println(rdfPath);
 			String testName = "Reproduce ouptuts with JDLL " + postfix;
 			String error = null;
 			String status = null;
