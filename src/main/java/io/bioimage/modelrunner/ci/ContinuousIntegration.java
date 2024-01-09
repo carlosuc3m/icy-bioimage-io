@@ -36,7 +36,6 @@ import java.util.jar.Manifest;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.bioimageanalysis.icy.deepicy.model.execution.processing.JavaProcessing;
 
 import io.bioimage.modelrunner.bioimageio.BioimageioRepo;
 import io.bioimage.modelrunner.bioimageio.description.ModelDescriptor;
@@ -51,11 +50,13 @@ import io.bioimage.modelrunner.numpy.DecodeNumpy;
 import io.bioimage.modelrunner.tensor.Tensor;
 import io.bioimage.modelrunner.utils.Constants;
 import io.bioimage.modelrunner.utils.YAMLUtils;
+import net.imglib2.Cursor;
 import net.imglib2.RandomAccessibleInterval;
 import net.imglib2.loops.LoopBuilder;
 import net.imglib2.type.NativeType;
 import net.imglib2.type.numeric.RealType;
 import net.imglib2.type.numeric.real.FloatType;
+import net.imglib2.view.Views;
 
 /**
  * 
@@ -300,12 +301,12 @@ public class ContinuousIntegration {
 		}
 		if (rd.getInputTensors().size() != rd.getTestInputs().size()) {
 			inferTest.put("status", "failed");
-			inferTest.put("error", "the number of inputs should be the same as the number of test inputs,"
+			inferTest.put("error", "the number of test inputs should be the same as the number of inputs,"
 					+ rd.getInputTensors().size() + " vs " + rd.getTestInputs().size());
 			return inferTest;
 		} else if (rd.getOutputTensors().size() != rd.getTestOutputs().size()) {
 			inferTest.put("status", "failed");
-			inferTest.put("error", "the number of outputs should be the same as the number of test outputs"
+			inferTest.put("error", "the number of test outputs should be the same as the number of outputs"
 					+ rd.getOutputTensors().size() + " vs " + rd.getTestOutputs().size());
 			return inferTest;
 		} 
@@ -329,8 +330,8 @@ public class ContinuousIntegration {
 		EngineInfo engineInfo = EngineInfo.defineCompatibleDLEngineWithRdfYamlWeights(ww);
 		Model model = Model.createDeepLearningModel(rd.getModelPath(), rd.getModelPath() + File.separator + ww.getSourceFileName(), engineInfo);
 		model.runModel(inps, outs);
-		
-		List<Float> maxDif = new ArrayList<Float>();
+
+		List<Double> maxDif = new ArrayList<Double>();
 		for (int i = 0; i < rd.getOutputTensors().size(); i ++) {
 			Tensor<T> tt = (Tensor<T>) outs.get(i);
 			if (rd.getOutputTensors().get(i).getPostprocessing().size() > 0) {
@@ -340,8 +341,8 @@ public class ContinuousIntegration {
 			}
 			RandomAccessibleInterval<T> rai = DecodeNumpy.retrieveImgLib2FromNpy(rd.getTestOutputs().get(i).getLocalPath().toAbsolutePath().toString());
 			LoopBuilder.setImages( tt.getData(), rai )
-			.multiThreaded().forEachPixel( ( j, o ) -> o.set( (T) new FloatType(o.getRealFloat() - j.getRealFloat())) )
-			rai.ma;
+			.multiThreaded().forEachPixel( ( j, o ) -> o.set( (T) new FloatType(o.getRealFloat() - j.getRealFloat())) );
+			maxDif.add(computeMaxDiff(rai));
 		}
 		
 		
@@ -354,5 +355,22 @@ public class ContinuousIntegration {
 		typeTest.put("traceback", null);
 		typeTest.put("JDLL_VERSION", getJDLLVersion());
 		return typeTest;
+	}
+	
+	
+	public static < T extends RealType< T > & NativeType< T > > double computeMaxDiff(final RandomAccessibleInterval< T > input) {
+			Cursor<T> iterator = Views.iterable(input).cursor();
+			T type = iterator.next();
+			T min = type.copy();
+			T max = type.copy();
+			while ( iterator.hasNext() )
+			{
+				type = iterator.next();
+				if ( type.compareTo( min ) < 0 )
+					min.set( type );
+				if ( type.compareTo( max ) > 0 )
+					max.set( type );
+			}
+			return Math.max(-min.getRealDouble(), min.getRealDouble());
 	}
 }

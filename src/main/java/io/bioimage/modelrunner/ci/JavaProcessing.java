@@ -63,7 +63,7 @@ public class JavaProcessing {
 	/**
 	 * Package where the BioImage.io transformations are.
 	 */
-	private static String bioimageIoTransformationsPackage = "io.bioimage.modelrunner.transformations.";
+	private static final String BIOIMAGEIO_TRANSFORMATIONS_PACKAGE = "io.bioimage.modelrunner.transformations.";
 	/**
 	 * Name of the standard method used by the BioImage.io transformations to call the 
 	 * pre-processing routine
@@ -205,7 +205,7 @@ public class JavaProcessing {
 	 */
 	private void findMethodInBioImageIo() throws ClassNotFoundException {
 		this.javaMethodName = snakeCaseToCamelCaseFirstCap(this.rdfSpec) + "Transformation";
-		this.javaClassName = bioimageIoTransformationsPackage + this.javaMethodName;
+		this.javaClassName = BIOIMAGEIO_TRANSFORMATIONS_PACKAGE + this.javaMethodName;
 		findClassInClassPath();
 		this.javaMethodName = bioImageIoExecutionMethodName;
 	}
