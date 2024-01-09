@@ -146,6 +146,7 @@ public class ContinuousIntegration {
 			Map<String, Object> summariesPerWeightFormat = new LinkedHashMap<String, Object>();
 						
 			for (WeightFormat ww : weights.gettAllSupportedWeightObjects()) {
+				List<Object> summariesWeightFormat = new ArrayList<Object>();
 				Map<String, String> summaryWeightFormat = new LinkedHashMap<String, String>();
 				try {
 					
@@ -156,8 +157,9 @@ public class ContinuousIntegration {
 					summaryWeightFormat.put("traceback", ex.toString());
 					summaryWeightFormat.put("source_name", rdfPath.toAbsolutePath().toString());
 					summaryWeightFormat.putAll(summaryDefaults);
+					summariesWeightFormat.add(summaryWeightFormat);
 				}
-				summariesPerWeightFormat.put(ww.getFramework(), summaryWeightFormat);
+				summariesPerWeightFormat.put(ww.getFramework(), summariesWeightFormat);
 			}
 
 			List<Object> passedReproducedSummaries = new ArrayList<Object>();
