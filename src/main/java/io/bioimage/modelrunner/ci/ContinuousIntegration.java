@@ -65,7 +65,7 @@ import net.imglib2.view.Views;
  */
 public class ContinuousIntegration {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		//String pendingMatrix = args[1];
         
@@ -73,20 +73,7 @@ public class ContinuousIntegration {
         Path rdfDir = currentDir.resolve("../bioimageio-gh-pages/rdfs").normalize();
 
         // Create a matcher for the pattern 'rdf.yaml'
-        PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:**.class");
-
-        // Stream and filter the directory contents based on the pattern
-        try (Stream<Path> stream = Files.walk(rdfDir)) {
-            stream.forEach(System.out::println); // Print the matched paths
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try (Stream<Path> stream = Files.walk(rdfDir)) {
-            stream.filter(matcher::matches)
-                  .forEach(System.out::println); // Print the matched paths
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        runTests(rdfDir, "**", "**", Paths.get("test_summaries"), null);
     }
 
 	
