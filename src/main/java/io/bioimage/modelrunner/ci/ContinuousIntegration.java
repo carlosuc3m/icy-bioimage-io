@@ -72,13 +72,15 @@ public class ContinuousIntegration {
         Path currentDir = Paths.get(ContinuousIntegration.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParent();
         Path rdfDir = currentDir.resolve("../bioimageio-gh-pages/rdfs").normalize();
 
-        System.out.println(rdfDir);
-        for (String ff : rdfDir.toFile().list())
-        	System.out.println(ff);
         // Create a matcher for the pattern 'rdf.yaml'
         PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:**.class");
 
         // Stream and filter the directory contents based on the pattern
+        try (Stream<Path> stream = Files.walk(rdfDir)) {
+            stream.forEach(System.out::println); // Print the matched paths
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try (Stream<Path> stream = Files.walk(rdfDir)) {
             stream.filter(matcher::matches)
                   .forEach(System.out::println); // Print the matched paths
