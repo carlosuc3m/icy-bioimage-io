@@ -44,6 +44,8 @@ jobs:
       with:
         java-version: 11
         maven-version: 3.9.5
+    - name: Build with Maven
+      run: mvn clean install
     - name: Generate Classpath (Unix)
       run: echo "CLASSPATH=$(mvn -q exec:exec -Dexec.executable=echo -Dexec.args='%classpath')" >> $GITHUB_ENV
 
