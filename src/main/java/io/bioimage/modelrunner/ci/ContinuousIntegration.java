@@ -94,10 +94,12 @@ public class ContinuousIntegration {
 			
 			Map<String, Object> rdf = new LinkedHashMap<String, Object>();
 			try {
+				System.out.println(rdfPath.toAbsolutePath().toString());
 				rdf = YAMLUtils.load(rdfPath.toAbsolutePath().toString());
 			} catch (Exception ex) {
 				error = "Unable to load " + Constants.RDF_FNAME + ": " + ex.toString();
 				status = "failed";
+				ex.printStackTrace();
 			}
 
 			Object rdID = rdf.get("id");
@@ -196,10 +198,7 @@ public class ContinuousIntegration {
 		Path path = Paths.get(summariesPath).getParent();
 		if (path != null && !Files.exists(path))
             Files.createDirectories(path);
-		System.out.println("**");
-		System.out.println(summaries);
 		YAMLUtils.writeYamlFile(summariesPath, summaries);
-		System.out.println(summariesPath);
 	}
 	
 	/**
