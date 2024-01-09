@@ -136,6 +136,7 @@ public class ContinuousIntegration {
 				if (traceback != null)
 					summaryMap.put("traceback", traceback);
 				summaryMap.putAll(summaryDefaults);
+				summary.add(summaryMap);
 				
 				writeSummaries(summariesDir.toAbsolutePath() + File.separator + rdID + File.separator + "test_summary_" + postfix + ".yaml", summary);
 				continue;
@@ -195,6 +196,8 @@ public class ContinuousIntegration {
 		Path path = Paths.get(summariesPath).getParent();
 		if (path != null && !Files.exists(path))
             Files.createDirectories(path);
+		System.out.println("**");
+		System.out.println(summaries);
 		YAMLUtils.writeYamlFile(summariesPath, summaries);
 		System.out.println(summariesPath);
 	}
