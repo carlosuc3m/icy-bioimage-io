@@ -94,8 +94,8 @@ public class ContinuousIntegration {
 			
 			Map<String, Object> rdf = new LinkedHashMap<String, Object>();
 			try {
-				System.out.println(rdfPath.toAbsolutePath().toString());
 				rdf = YAMLUtils.load(rdfPath.toAbsolutePath().toString());
+				System.out.println(rdf);
 			} catch (Exception ex) {
 				error = "Unable to load " + Constants.RDF_FNAME + ": " + ex.toString();
 				status = "failed";
