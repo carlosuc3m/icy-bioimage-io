@@ -110,9 +110,9 @@ public class ContinuousIntegration {
 			} else if (type == null || !(type instanceof String) || !((String) type).equals("model")) {
 				status = "skipped";
 				error = "not a model RDF";
-			} else if (weightFormats == null || !(weightFormats instanceof List)) {
+			} else if (weightFormats == null || !(weightFormats instanceof Map)) {
 				status = "failed";
-				error = "Missing/Invalid weight formats 1 for " + rdID;
+				error = "Missing weights dictionary for " + rdID;
 				traceback = weightFormats.toString();
 			}
 			ModelWeight weights = null;
@@ -120,7 +120,7 @@ public class ContinuousIntegration {
 				weights = ModelWeight.build((Map<String, Object>) weightFormats);
 			} catch (Exception ex) {
 				status = "failed";
-				error = "Missing/Invalid weight formats 2 for " + rdID;
+				error = "Missing/Invalid weight formats for " + rdID;
 				traceback = ex.toString();
 			}
 			
