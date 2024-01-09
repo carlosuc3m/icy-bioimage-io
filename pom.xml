@@ -44,6 +44,13 @@
 			</roles>
 		</developer>
 	</developers>
+	<contributors>
+		<contributor>
+			<name>Carlos Garcia</name>
+			<url>https://github.com/carlosuc3m</url>
+			<properties><id>carlosuc3m</id></properties>
+		</contributor>
+	</contributors>
 
 	<mailingLists>
 		<mailingList>
