@@ -87,7 +87,6 @@ public class ContinuousIntegration {
         List<Path> rdfFiles = Files.walk(rdfDir).filter(matcher::matches).collect(Collectors.toList());
 		
 		for (Path rdfPath : rdfFiles) {
-			System.out.println(rdfPath);
 			String testName = "Reproduce ouptuts with JDLL " + postfix;
 			String error = null;
 			String status = null;
@@ -197,6 +196,7 @@ public class ContinuousIntegration {
 		if (path != null && !Files.exists(path))
             Files.createDirectories(path);
 		YAMLUtils.writeYamlFile(summariesPath, summaries);
+		System.out.println(summariesPath);
 	}
 	
 	/**
