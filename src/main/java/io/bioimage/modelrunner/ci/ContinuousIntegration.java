@@ -65,15 +65,6 @@ public class ContinuousIntegration {
 	
 	public static void main(String[] args) throws IOException {
 		
-		ModelDescriptor rd;
-		try {
-			rd = ModelDescriptor.readFromLocalFile("/home/carlos/git/JDLL/models/EnhancerMitochondriaEM2D/rdf.yaml", false);
-		} catch (ModelSpecsException e) {
-			return;
-		}
-		
-		testModelInference(rd, rd.getWeights().gettAllSupportedWeightObjects().get(0), 4); 
-		
 		//String pendingMatrix = args[1];
         
         Path currentDir = Paths.get(ContinuousIntegration.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParent();
