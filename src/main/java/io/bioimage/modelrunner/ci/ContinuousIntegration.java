@@ -111,6 +111,7 @@ public class ContinuousIntegration {
 			} else if (weightFormats == null || !(weightFormats instanceof List)) {
 				status = "failed";
 				error = "Missing/Invalid weight formats 1 for " + rdID;
+				traceback = weightFormats.toString();
 			}
 			ModelWeight weights = null;
 			try {
@@ -133,8 +134,7 @@ public class ContinuousIntegration {
 				summaryMap.put("status", status);
 				summaryMap.put("error", error);
 				summaryMap.put("source_name", rdfPath.toAbsolutePath().toString());
-				if (traceback != null)
-					summaryMap.put("traceback", traceback);
+				summaryMap.put("traceback", traceback);
 				summaryMap.putAll(summaryDefaults);
 				summary.add(summaryMap);
 				
