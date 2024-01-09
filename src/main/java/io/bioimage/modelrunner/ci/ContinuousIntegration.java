@@ -150,9 +150,7 @@ public class ContinuousIntegration {
 			}
 			
 			Map<String, Object> summariesPerWeightFormat = new LinkedHashMap<String, Object>();
-			
-			
-			
+						
 			for (WeightFormat ww : weights.gettAllSupportedWeightObjects()) {
 				Map<String, String> summaryWeightFormat = new LinkedHashMap<String, String>();
 				try {
