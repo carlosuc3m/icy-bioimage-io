@@ -44,6 +44,8 @@ jobs:
       with:
         java-version: 11
         maven-version: 3.9.5
+    - name: run maven
+      run: mvn exec:java -Dexec.mainClass="io.bioimage.modelrunner.ci.ContinuousIntegration"
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: test with JDLL
