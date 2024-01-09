@@ -110,14 +110,14 @@ public class ContinuousIntegration {
 				error = "not a model RDF";
 			} else if (weightFormats == null || !(weightFormats instanceof List)) {
 				status = "failed";
-				error = "Missing/Invalid weight formats for " + rdID;
+				error = "Missing/Invalid weight formats 1 for " + rdID;
 			}
 			ModelWeight weights = null;
 			try {
 				weights = ModelWeight.build((Map<String, Object>) weightFormats);
 			} catch (Exception ex) {
 				status = "failed";
-				error = "Missing/Invalid weight formats for " + rdID;
+				error = "Missing/Invalid weight formats 2 for " + rdID;
 				traceback = ex.toString();
 			}
 			
