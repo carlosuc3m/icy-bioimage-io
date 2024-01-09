@@ -65,6 +65,15 @@ public class ContinuousIntegration {
 	
 	public static void main(String[] args) throws IOException {
 		
+		ModelDescriptor rd;
+		try {
+			rd = ModelDescriptor.readFromLocalFile("/home/carlos/git/JDLL/models/EnhancerMitochondriaEM2D/rdf.yaml", false);
+		} catch (ModelSpecsException e) {
+			return;
+		}
+		
+		testModelInference(rd, rd.getWeights().gettAllSupportedWeightObjects().get(0), 4); 
+		
 		//String pendingMatrix = args[1];
         
         Path currentDir = Paths.get(ContinuousIntegration.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParent();
@@ -337,12 +346,12 @@ public class ContinuousIntegration {
 		try {
 			model = Model.createDeepLearningModel(rd.getModelPath(), rd.getModelPath() + File.separator + ww.getSourceFileName(), engineInfo);
 			model.loadModel();
-		} catch (IllegalStateException | LoadEngineException | IOException | LoadModelException e) {
+		} catch (Exception e) {
 			return failInferenceTest(rd.getName(), "unable to instantiate/load model", e.toString());
 		}
 		try {
 			model.runModel(inps, outs);
-		} catch (RunModelException e) {
+		} catch (Exception e) {
 			return failInferenceTest(rd.getName(), "unable to run model", e.toString());
 		}
 

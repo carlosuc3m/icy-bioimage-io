@@ -112,7 +112,7 @@ public class JavaProcessing {
 			 throws IllegalArgumentException {
 		this.tensorSpec = tensorSpec;
 		this.tensorName = tensorSpec.getName();
-		this.tensor = tensor;;
+		this.tensor = input;;
 		LinkedHashMap<String, Object> resultsMap = executeJavaTransformation();
 		return (Tensor) resultsMap.get(tensor.getName());
 	}
