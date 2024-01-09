@@ -2,4 +2,6 @@
   status: failed
   error: Missing/Invalid weight formats 1 for deepimagej/SkinLesionClassification/latest
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/deepimagej/SkinLesionClassification/latest/rdf.yaml
+  traceback: '{pytorch_script={sha256=b40e303e2a1996535da02626af6f2a4a243befc8f0957be4d47abdd940554f15,
+    source=https://raw.githubusercontent.com/deepimagej/models/master/skin_lesion_classification/pytorch_script.pt}}'
   JDLL_VERSION: 0.5.5-SNAPSHOT

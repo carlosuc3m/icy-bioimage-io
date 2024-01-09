@@ -2,4 +2,7 @@
   status: failed
   error: Missing/Invalid weight formats 1 for deepimagej/WidefieldFitcSuperResolution/latest
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/deepimagej/WidefieldFitcSuperResolution/latest/rdf.yaml
+  traceback: '{tensorflow_saved_model_bundle={attachments={files=[./config.xml]},
+    sha256=d235aa1ee2a94e67afe45b2c89a2daa14f7f005d1e7ec8256369c4980bc5f016, source=https://raw.githubusercontent.com/deepimagej/models/master/widefield_fitc_super-resolution/tensorflow_saved_model_bundle.zip,
+    tensorflow_version=1.15}}'
   JDLL_VERSION: 0.5.5-SNAPSHOT

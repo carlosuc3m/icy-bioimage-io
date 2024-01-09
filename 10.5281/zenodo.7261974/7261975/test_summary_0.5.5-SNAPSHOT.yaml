@@ -2,4 +2,7 @@
   status: failed
   error: Missing/Invalid weight formats 1 for 10.5281/zenodo.7261974/7261975
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.7261974/7261975/rdf.yaml
+  traceback: '{keras_hdf5={sha256=8f64a31164843648f1fc2e4c57c08299b9bae4b18dbeecb9f823585ca971e90b,
+    source=https://zenodo.org/api/records/7261975/files/keras_weights.hdf5/content,
+    tensorflow_version=2.9.2}}'
   JDLL_VERSION: 0.5.5-SNAPSHOT

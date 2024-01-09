@@ -2,4 +2,7 @@
   status: failed
   error: Missing/Invalid weight formats 1 for 10.5281/zenodo.7315440/7315441
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.7315440/7315441/rdf.yaml
+  traceback: '{onnx={authors=[{name=Daniel Capek}, {name=Matvey Safroshkin}, {name=Hernan
+    Morales}, {name=Grigory Arutyunov}, {name=Nikan Toulany}, {name=Patrick Mueller}],
+    opset_version=7, source=https://zenodo.org/api/records/7315441/files/EmbryoNet_GPU_batch_1.onnx/content}}'
   JDLL_VERSION: 0.5.5-SNAPSHOT

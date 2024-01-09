@@ -2,4 +2,8 @@
   status: failed
   error: Missing/Invalid weight formats 1 for fiji/N2VSEMDemo/latest
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/fiji/N2VSEMDemo/latest/rdf.yaml
+  traceback: '{tensorflow_saved_model_bundle={authors=[{affiliation=MDC Berlin, name=Deborah
+    Schmidt}], sha256=c55ab5528ec0dd8b3e00062df155ba00aef4971d7eacc3ed2d41db1f25917994,
+    source=https://github.com/bioimage-io/fiji-bioimage-io/releases/download/v0.3.1/n2v-sem-demo_savedmodelbundle.zip,
+    tensorflow_version=1.13.1}}'
   JDLL_VERSION: 0.5.5-SNAPSHOT

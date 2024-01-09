@@ -2,4 +2,7 @@
   status: failed
   error: Missing/Invalid weight formats 1 for 10.5281/zenodo.6348084/6348085
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.6348084/6348085/rdf.yaml
+  traceback: '{tensorflow_saved_model_bundle={dependencies=conda:https://zenodo.org/api/records/6348085/files/environment.yaml/content,
+    sha256=e4b609e0ef20f4b1daba5d0a508fc8993376cb0302e0b43f7ce3b6af7e9a3176, source=https://zenodo.org/api/records/6348085/files/TF_SavedModel.zip/content,
+    tensorflow_version=1.15.3}}'
   JDLL_VERSION: 0.5.5-SNAPSHOT

@@ -2,4 +2,6 @@
   status: failed
   error: Missing/Invalid weight formats 1 for deepimagej/SMLMDensityMapEstimationDEFCoN/latest
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/deepimagej/SMLMDensityMapEstimationDEFCoN/latest/rdf.yaml
+  traceback: '{tensorflow_js={sha256=d1427f81f1fb217c127ef01ed992b6a9dc11d3a5b552514cfdccd82c01230e21,
+    source=https://raw.githubusercontent.com/deepimagej/tensorflow-js-models/main/defcon_density_map_estimation_tf_js_model/model.json}}'
   JDLL_VERSION: 0.5.5-SNAPSHOT

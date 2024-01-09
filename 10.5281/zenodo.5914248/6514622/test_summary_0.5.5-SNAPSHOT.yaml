@@ -2,4 +2,9 @@
   status: failed
   error: Missing/Invalid weight formats 1 for 10.5281/zenodo.5914248/6514622
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.5914248/6514622/rdf.yaml
+  traceback: '{keras_hdf5={sha256=d31fd8c4e764ae4b315a33f9ee9cc17e94764a93f2097542a80d0337327e872b,
+    source=https://zenodo.org/api/records/6514622/files/unet_pancreatic_cell_segmentation.h5/content,
+    tensorflow_version=1.15}, tensorflow_saved_model_bundle={sha256=e0775a1d99afe6492946166f72fa6879a2c5e0315ea1e5292340f7e4ee73b842,
+    source=https://zenodo.org/api/records/6514622/files/tensorflow_saved_model_bundle.zip/content,
+    tensorflow_version=1.15}}'
   JDLL_VERSION: 0.5.5-SNAPSHOT

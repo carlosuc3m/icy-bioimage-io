@@ -2,4 +2,10 @@
   status: failed
   error: Missing/Invalid weight formats 1 for 10.5281/zenodo.6383429/6383430
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.6383429/6383430/rdf.yaml
+  traceback: '{pytorch_state_dict={architecture=https://zenodo.org/api/records/6383430/files/unet.py/content:UNet3D,
+    architecture_sha256=2da9f7149e144b63fee715fb8fe5154e96bf9aa230d176c91e923d528ef0c4e1,
+    dependencies=conda:https://zenodo.org/api/records/6383430/files/environment.yaml/content,
+    kwargs={f_maps=16, final_sigmoid=true, in_channels=1, is_segmentation=true, layer_order=gcr,
+    num_groups=8, out_channels=2, testing=true}, sha256=c7c73485fd17273f8018e7e8ba76c030d7b0c8553a242ac1303b23904f6303ef,
+    source=https://zenodo.org/api/records/6383430/files/unet-bce-dice-ab-nuclei-boundary-090121.pytorch/content}}'
   JDLL_VERSION: 0.5.5-SNAPSHOT

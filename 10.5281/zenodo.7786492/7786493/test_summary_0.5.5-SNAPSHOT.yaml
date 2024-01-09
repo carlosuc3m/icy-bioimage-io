@@ -2,4 +2,6 @@
   status: failed
   error: Missing/Invalid weight formats 1 for 10.5281/zenodo.7786492/7786493
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.7786492/7786493/rdf.yaml
+  traceback: '{torchscript={pytorch_version=1.13.1+cu116, sha256=98938b3135ccdc1dba8ad96c65027746712a6d470b8fcdb12f53b7de35bb471d,
+    source=https://zenodo.org/api/records/7786493/files/weights.pt/content}}'
   JDLL_VERSION: 0.5.5-SNAPSHOT

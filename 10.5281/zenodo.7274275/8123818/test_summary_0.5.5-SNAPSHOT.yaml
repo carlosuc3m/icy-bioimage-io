@@ -2,4 +2,14 @@
   status: failed
   error: Missing/Invalid weight formats 1 for 10.5281/zenodo.7274275/8123818
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.7274275/8123818/rdf.yaml
+  traceback: '{pytorch_state_dict={architecture=https://zenodo.org/api/records/8123818/files/piled_unets.py/content:PiledUnet,
+    architecture_sha256=4b0f4759b35dfcd868f71acac492fc6c2c9c99897b30b2508126a8e6607e24c7,
+    kwargs={batch_norm=true, filter_sizes_bottleneck=[[64, 128], [64, 128], [64, 128]],
+    filter_sizes_down=[[[8, 16], [16, 32], [32, 64]], [[8, 16], [16, 32], [32, 64]],
+    [[8, 16], [16, 32], [32, 64]]], filter_sizes_up=[[[64, 64], [32, 32], [16, 16]],
+    [[64, 64], [32, 32], [16, 16]], [[64, 64], [32, 32], [16, 16]]], in_channels=1,
+    n_nets=3, out_channels=[1, 1, 1], output_activation=sigmoid, predict=true}, pytorch_version=1.13.1,
+    sha256=6b523c9a77916e75306563e39b79ef2cfb72a857540994958a8d0943f46a207c, source=https://zenodo.org/api/records/8123818/files/model_0097.pt/content},
+    torchscript={pytorch_version=1.13.1, sha256=edbb4da356b1d79b0ed0ee73dd80d3760ddf99ebdd969900aba7ff8d1c521734,
+    source=https://zenodo.org/api/records/8123818/files/weights.torchscript/content}}'
   JDLL_VERSION: 0.5.5-SNAPSHOT

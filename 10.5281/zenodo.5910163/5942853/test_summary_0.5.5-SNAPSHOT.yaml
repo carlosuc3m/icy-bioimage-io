@@ -2,4 +2,6 @@
   status: failed
   error: Missing/Invalid weight formats 1 for 10.5281/zenodo.5910163/5942853
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.5910163/5942853/rdf.yaml
+  traceback: '{onnx={authors=[{name=Wei OUYANG}], sha256=0ef125632b0058b2f04448de56dc23339fcbfe4f628601e836e17cef6f344e3f,
+    source=https://zenodo.org/api/records/5942853/files/densenet_model.onnx/content}}'
   JDLL_VERSION: 0.5.5-SNAPSHOT

@@ -2,4 +2,12 @@
   status: failed
   error: Missing/Invalid weight formats 1 for 10.5281/zenodo.5764892/6647674
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.5764892/6647674/rdf.yaml
+  traceback: '{onnx={opset_version=12, sha256=df913b85947f5132bcdaf81d91af0963f60d44f4caf8a4fec672d96a2f327b44,
+    source=https://zenodo.org/api/records/6647674/files/weights.onnx/content}, pytorch_state_dict={architecture=https://zenodo.org/api/records/6647674/files/unet.py/content:UNet2d,
+    architecture_sha256=7f5b15948e8e2c91f78dcff34fbf30af517073e91ba487f3edb982b948d099b3,
+    dependencies=conda:https://zenodo.org/api/records/6647674/files/environment.yaml/content,
+    kwargs={depth=4, final_activation=Sigmoid, gain=2, in_channels=1, initial_features=64,
+    out_channels=2, postprocessing=null, return_side_outputs=false}, sha256=608f52cd7f5119f7a7b8272395b0c169714e8be34536eaf159820f72a1d6a5b7,
+    source=https://zenodo.org/api/records/6647674/files/weights.pt/content}, torchscript={sha256=8410950508655a300793b389c815dc30b1334062fc1dadb1e15e55a93cbb99a0,
+    source=https://zenodo.org/api/records/6647674/files/weights-torchscript.pt/content}}'
   JDLL_VERSION: 0.5.5-SNAPSHOT

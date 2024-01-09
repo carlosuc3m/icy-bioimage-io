@@ -2,4 +2,9 @@
   status: failed
   error: Missing/Invalid weight formats 1 for deepimagej/DeepSTORMZeroCostDL4Mic/latest
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/deepimagej/DeepSTORMZeroCostDL4Mic/latest/rdf.yaml
+  traceback: '{keras_hdf5={sha256=61fd2b4d03d7704c8db810fbd33c6f6a4aed0b3a1ca8371c8381adb6850711f6,
+    source=https://raw.githubusercontent.com/deepimagej/models/master/deepstorm_zerocostdl4mic/weights_best.hdf5},
+    tensorflow_saved_model_bundle={attachments={files=[./config.xml]}, sha256=efcae3a3cde4b9f077b9595dd7f3c40c39e97e673e087b7cc8fa5fa28e283944,
+    source=https://raw.githubusercontent.com/deepimagej/models/master/deepstorm_zerocostdl4mic/tensorflow_saved_model_bundle.zip,
+    tensorflow_version=1.15}}'
   JDLL_VERSION: 0.5.5-SNAPSHOT

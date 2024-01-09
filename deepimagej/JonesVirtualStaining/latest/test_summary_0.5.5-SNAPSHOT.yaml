@@ -2,4 +2,7 @@
   status: failed
   error: Missing/Invalid weight formats 1 for deepimagej/JonesVirtualStaining/latest
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/deepimagej/JonesVirtualStaining/latest/rdf.yaml
+  traceback: '{tensorflow_saved_model_bundle={attachments={files=[./config.xml]},
+    sha256=ec37989b50017f53c3cb9cb3ff1a302ee3b7ed50ab6d8ba34264f10a64ad551a, source=https://raw.githubusercontent.com/deepimagej/models/master/jones_virtual_staining/tensorflow_saved_model_bundle.zip,
+    tensorflow_version=1.15}}'
   JDLL_VERSION: 0.5.5-SNAPSHOT
