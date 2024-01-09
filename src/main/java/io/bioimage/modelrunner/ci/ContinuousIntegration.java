@@ -66,12 +66,15 @@ import net.imglib2.view.Views;
 public class ContinuousIntegration {
 	
 	public static void main(String[] args) {
-		String resource_id = "your_resource_id";
-        String version_id = "your_version_id";
+		
+		String pendingMatrix = args[1];
         
-        // Equivalent to Python's rdf_dir / resource_id / version_id
-        Path rdfDir = Paths.get("target");
+        Path currentDir = Paths.get(ContinuousIntegration.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParent();
+        Path rdfDir = currentDir.resolve("../bioimageio-gh-pages/rdfs").normalize();
 
+        System.out.println(rdfDir);
+        for (String ff : rdfDir.toFile().list())
+        	System.out.println(ff);
         // Create a matcher for the pattern 'rdf.yaml'
         PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:**.class");
 
