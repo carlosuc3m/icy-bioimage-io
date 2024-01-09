@@ -1,5 +1,5 @@
 - name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT
   status: failed
-  error: Missing/Invalid weight formats for 10.5281/zenodo.5914248/6514446
+  error: Missing/Invalid weight formats 1 for 10.5281/zenodo.5914248/6514446
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.5914248/6514446/rdf.yaml
   JDLL_VERSION: 0.5.5-SNAPSHOT

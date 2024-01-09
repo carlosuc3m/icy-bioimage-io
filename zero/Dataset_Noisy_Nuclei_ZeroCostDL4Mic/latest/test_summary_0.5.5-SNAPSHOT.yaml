@@ -1,6 +1,6 @@
 - name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT
   status: failed
-  error: Missing/Invalid weight formats for zero/Dataset_Noisy_Nuclei_ZeroCostDL4Mic/latest
+  error: Missing/Invalid weight formats 2 for zero/Dataset_Noisy_Nuclei_ZeroCostDL4Mic/latest
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/zero/Dataset_Noisy_Nuclei_ZeroCostDL4Mic/latest/rdf.yaml
   traceback: java.lang.NullPointerException
   JDLL_VERSION: 0.5.5-SNAPSHOT

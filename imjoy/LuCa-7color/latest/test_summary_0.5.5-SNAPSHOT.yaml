@@ -1,6 +1,6 @@
 - name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT
   status: failed
-  error: Missing/Invalid weight formats for imjoy/LuCa-7color/latest
+  error: Missing/Invalid weight formats 2 for imjoy/LuCa-7color/latest
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/imjoy/LuCa-7color/latest/rdf.yaml
   traceback: java.lang.NullPointerException
   JDLL_VERSION: 0.5.5-SNAPSHOT

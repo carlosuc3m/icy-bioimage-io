@@ -1,6 +1,6 @@
 - name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT
   status: failed
-  error: Missing/Invalid weight formats for ilastik/stradist_dsb_training_data/latest
+  error: Missing/Invalid weight formats 2 for ilastik/stradist_dsb_training_data/latest
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/ilastik/stradist_dsb_training_data/latest/rdf.yaml
   traceback: java.lang.NullPointerException
   JDLL_VERSION: 0.5.5-SNAPSHOT
