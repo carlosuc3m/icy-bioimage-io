@@ -1,9 +1,3 @@
-- name: reproduce test outputs from test inputs (onnx)
-  status: failed
-  error: unable to instantiate/load model
-  source_name: HPA Bestfitting Densenet
-  traceback: java.lang.NullPointerException
-  JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: load resource description (onnx)
   status: passed
   error: null
@@ -21,4 +15,10 @@
   error: unable to download model
   traceback: null
   source_name: HPA Bestfitting Densenet
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: reproduce test outputs from test inputs" (onnx)
+  status: passed
+  error: null
+  source_name: HPA Bestfitting Densenet
+  traceback: null
   JDLL_VERSION: 0.5.5-SNAPSHOT

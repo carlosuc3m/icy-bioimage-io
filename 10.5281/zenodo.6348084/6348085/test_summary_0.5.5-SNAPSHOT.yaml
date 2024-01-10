@@ -1,24 +1,13 @@
-- name: reproduce test outputs from test inputs (tensorflow_saved_model_bundle)
+- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT (tensorflow_saved_model_bundle)
   status: failed
-  error: unable to instantiate/load model
-  source_name: StarDist Fluorescence Nuclei Segmentation
-  traceback: java.lang.NullPointerException
-  JDLL_VERSION: 0.5.5-SNAPSHOT
-- name: load resource description (tensorflow_saved_model_bundle)
-  status: passed
-  error: null
+  error: "java.lang.IllegalArgumentException: Processing method 'python' failed throwing\
+    \ an InvocationTargetException. Go to the following link to see valid transformations:https://github.com/bioimage-io/core-bioimage-io-java/tree/master/src/main/java/io/bioimage/specification/transformation.\
+    \ \n\njava.lang.IllegalArgumentException: No executables found amongst candidates:\
+    \ [python, python.exe, bin/python, bin/python.exe]"
+  traceback: "java.lang.IllegalArgumentException: Processing method 'python' failed\
+    \ throwing an InvocationTargetException. Go to the following link to see valid\
+    \ transformations:https://github.com/bioimage-io/core-bioimage-io-java/tree/master/src/main/java/io/bioimage/specification/transformation.\
+    \ \n\njava.lang.IllegalArgumentException: No executables found amongst candidates:\
+    \ [python, python.exe, bin/python, bin/python.exe]"
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.6348084/6348085/rdf.yaml
-  traceback: null
-  JDLL_VERSION: 0.5.5-SNAPSHOT
-- name: has expected resource type (tensorflow_saved_model_bundle)
-  status: passed
-  error: null
-  source_name: StarDist Fluorescence Nuclei Segmentation
-  traceback: null
-  JDLL_VERSION: 0.5.5-SNAPSHOT
-- name: JDLL is able to download model (tensorflow_saved_model_bundle)
-  status: passed
-  error: unable to download model
-  traceback: null
-  source_name: StarDist Fluorescence Nuclei Segmentation
   JDLL_VERSION: 0.5.5-SNAPSHOT

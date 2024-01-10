@@ -1,8 +1,8 @@
 - name: reproduce test outputs from test inputs (tensorflow_saved_model_bundle)
   status: failed
-  error: unable to instantiate/load model
+  error: unable to run model
   source_name: Drosophila epithelia cell boundary segmentation of 2D projections
-  traceback: java.lang.NullPointerException
+  traceback: 'java.lang.IllegalArgumentException: Unsupported tensor type: class net.imglib2.type.numeric.integer.UnsignedByteType'
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: load resource description (tensorflow_saved_model_bundle)
   status: passed

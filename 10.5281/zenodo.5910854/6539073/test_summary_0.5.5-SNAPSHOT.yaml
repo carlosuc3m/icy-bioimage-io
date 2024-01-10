@@ -1,14 +1,16 @@
 - name: reproduce test outputs from test inputs (onnx)
   status: failed
-  error: unable to instantiate/load model
+  error: output number 1 produces a very different result, the max difference is bigger
+    than 1.0E-4
   source_name: HPA Bestfitting InceptionV3
-  traceback: java.lang.NullPointerException
+  traceback: null
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: reproduce test outputs from test inputs (torchscript)
   status: failed
-  error: unable to instantiate/load model
+  error: output number 1 produces a very different result, the max difference is bigger
+    than 1.0E-4
   source_name: HPA Bestfitting InceptionV3
-  traceback: java.lang.NullPointerException
+  traceback: null
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: load resource description (onnx)
   status: passed
