@@ -1,2 +1,12 @@
-[
-  ]
+- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT (pytorch_state_dict)
+  status: failed
+  error: 'java.lang.IllegalArgumentException: Setter for argument ''eps'' of the processing
+    transformation ''zero_mean_unit_variance'' of tensor ''input0'' not found in the
+    Java transformation class ''io.bioimage.modelrunner.transformations.ZeroMeanUnitVarianceTransformation''.
+    A method called ''setEps'' should be present.'
+  traceback: 'java.lang.IllegalArgumentException: Setter for argument ''eps'' of the
+    processing transformation ''zero_mean_unit_variance'' of tensor ''input0'' not
+    found in the Java transformation class ''io.bioimage.modelrunner.transformations.ZeroMeanUnitVarianceTransformation''.
+    A method called ''setEps'' should be present.'
+  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.8401064/8429203/rdf.yaml
+  JDLL_VERSION: 0.5.5-SNAPSHOT

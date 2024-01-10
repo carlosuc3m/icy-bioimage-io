@@ -1,2 +1,48 @@
-[
-  ]
+- name: reproduce test outputs from test inputs (torchscript)
+  status: failed
+  error: unable to instantiate/load model
+  source_name: 3D UNet Mouse Embryo Live
+  traceback: java.lang.NullPointerException
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: reproduce test outputs from test inputs (pytorch_state_dict)
+  status: failed
+  error: unable to instantiate/load model
+  source_name: 3D UNet Mouse Embryo Live
+  traceback: java.lang.NullPointerException
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: load resource description (torchscript)
+  status: passed
+  error: null
+  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.6384845/7701638/rdf.yaml
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: has expected resource type (torchscript)
+  status: passed
+  error: null
+  source_name: 3D UNet Mouse Embryo Live
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: JDLL is able to download model (torchscript)
+  status: passed
+  error: unable to download model
+  traceback: null
+  source_name: 3D UNet Mouse Embryo Live
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: load resource description (pytorch_state_dict)
+  status: passed
+  error: null
+  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.6384845/7701638/rdf.yaml
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: has expected resource type (pytorch_state_dict)
+  status: passed
+  error: null
+  source_name: 3D UNet Mouse Embryo Live
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: JDLL is able to download model (pytorch_state_dict)
+  status: passed
+  error: unable to download model
+  traceback: null
+  source_name: 3D UNet Mouse Embryo Live
+  JDLL_VERSION: 0.5.5-SNAPSHOT

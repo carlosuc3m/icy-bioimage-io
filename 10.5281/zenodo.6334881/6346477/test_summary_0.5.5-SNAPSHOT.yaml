@@ -1,2 +1,6 @@
-[
-  ]
+- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT (pytorch_state_dict)
+  status: failed
+  error: java.lang.NullPointerException
+  traceback: java.lang.NullPointerException
+  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.6334881/6346477/rdf.yaml
+  JDLL_VERSION: 0.5.5-SNAPSHOT

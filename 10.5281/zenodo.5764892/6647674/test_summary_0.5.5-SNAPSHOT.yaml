@@ -1,2 +1,72 @@
-[
-  ]
+- name: reproduce test outputs from test inputs (torchscript)
+  status: failed
+  error: unable to instantiate/load model
+  source_name: NucleiSegmentationBoundaryModel
+  traceback: java.lang.NullPointerException
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: reproduce test outputs from test inputs (onnx)
+  status: failed
+  error: unable to instantiate/load model
+  source_name: NucleiSegmentationBoundaryModel
+  traceback: java.lang.NullPointerException
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: reproduce test outputs from test inputs (pytorch_state_dict)
+  status: failed
+  error: unable to instantiate/load model
+  source_name: NucleiSegmentationBoundaryModel
+  traceback: java.lang.NullPointerException
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: load resource description (torchscript)
+  status: passed
+  error: null
+  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.5764892/6647674/rdf.yaml
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: has expected resource type (torchscript)
+  status: passed
+  error: null
+  source_name: NucleiSegmentationBoundaryModel
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: JDLL is able to download model (torchscript)
+  status: passed
+  error: unable to download model
+  traceback: null
+  source_name: NucleiSegmentationBoundaryModel
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: load resource description (onnx)
+  status: passed
+  error: null
+  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.5764892/6647674/rdf.yaml
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: has expected resource type (onnx)
+  status: passed
+  error: null
+  source_name: NucleiSegmentationBoundaryModel
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: JDLL is able to download model (onnx)
+  status: passed
+  error: unable to download model
+  traceback: null
+  source_name: NucleiSegmentationBoundaryModel
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: load resource description (pytorch_state_dict)
+  status: passed
+  error: null
+  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.5764892/6647674/rdf.yaml
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: has expected resource type (pytorch_state_dict)
+  status: passed
+  error: null
+  source_name: NucleiSegmentationBoundaryModel
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: JDLL is able to download model (pytorch_state_dict)
+  status: passed
+  error: unable to download model
+  traceback: null
+  source_name: NucleiSegmentationBoundaryModel
+  JDLL_VERSION: 0.5.5-SNAPSHOT

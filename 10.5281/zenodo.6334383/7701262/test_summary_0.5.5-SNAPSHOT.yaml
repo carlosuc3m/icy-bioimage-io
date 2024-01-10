@@ -1,2 +1,12 @@
-[
-  ]
+- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT (torchscript)
+  status: failed
+  error: java.lang.NullPointerException
+  traceback: java.lang.NullPointerException
+  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.6334383/7701262/rdf.yaml
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT (pytorch_state_dict)
+  status: failed
+  error: java.lang.NullPointerException
+  traceback: java.lang.NullPointerException
+  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.6334383/7701262/rdf.yaml
+  JDLL_VERSION: 0.5.5-SNAPSHOT

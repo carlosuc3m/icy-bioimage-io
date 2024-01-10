@@ -1,2 +1,6 @@
-[
-  ]
+- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT (tensorflow_saved_model_bundle)
+  status: failed
+  error: java.lang.NullPointerException
+  traceback: java.lang.NullPointerException
+  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/deepimagej/Mt3VirtualStaining/latest/rdf.yaml
+  JDLL_VERSION: 0.5.5-SNAPSHOT

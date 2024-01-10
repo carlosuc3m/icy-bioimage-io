@@ -1,2 +1,26 @@
-[
-  ]
+- name: load resource description (tensorflow_saved_model_bundle)
+  status: passed
+  error: null
+  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/fiji/N2VSEMDemo/latest/rdf.yaml
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: has expected resource type (tensorflow_saved_model_bundle)
+  status: passed
+  error: null
+  source_name: N2V SEM Demo
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: JDLL is able to download model (tensorflow_saved_model_bundle)
+  status: failed
+  error: unable to download model
+  traceback: 'java.lang.IllegalArgumentException: The provided name does not correspond
+    to an existing Bioiamge.io online repository model.'
+  source_name: N2V SEM Demo
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: reproduce test inputs from test outptus for tensorflow_saved_model_bundle
+    (tensorflow_saved_model_bundle)
+  source_name: N2V SEM Demo
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+  status: failed
+  error: the number of test inputs should be the same as the number of inputs,1 vs
+    0

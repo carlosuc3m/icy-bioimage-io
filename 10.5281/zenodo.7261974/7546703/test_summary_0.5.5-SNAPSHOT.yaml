@@ -1,2 +1,6 @@
-[
-  ]
+- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT (keras_hdf5)
+  status: failed
+  error: java.lang.NullPointerException
+  traceback: java.lang.NullPointerException
+  source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.7261974/7546703/rdf.yaml
+  JDLL_VERSION: 0.5.5-SNAPSHOT
