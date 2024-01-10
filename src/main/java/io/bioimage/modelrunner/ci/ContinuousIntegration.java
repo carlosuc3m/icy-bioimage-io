@@ -276,7 +276,7 @@ public class ContinuousIntegration {
 		Map<String, String> downloadTest = new LinkedHashMap<String, String>();
 		downloadTest.put("name", "JDLL is able to download model");
 		downloadTest.put("status", error == null ? "passed" : "failed");
-		downloadTest.put("error", "unable to download model");
+		downloadTest.put("error", error == null ? null : "unable to download model");
 		downloadTest.put("traceback", error);
 		downloadTest.put("source_name", rd.getName());
 		downloadTest.put("JDLL_VERSION", getJDLLVersion());
