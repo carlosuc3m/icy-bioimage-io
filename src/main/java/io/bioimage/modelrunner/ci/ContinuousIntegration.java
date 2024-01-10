@@ -28,6 +28,7 @@ import java.nio.file.Path;
 import java.nio.file.PathMatcher;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,9 +43,6 @@ import io.bioimage.modelrunner.bioimageio.description.exceptions.ModelSpecsExcep
 import io.bioimage.modelrunner.bioimageio.description.weights.ModelWeight;
 import io.bioimage.modelrunner.bioimageio.description.weights.WeightFormat;
 import io.bioimage.modelrunner.engine.EngineInfo;
-import io.bioimage.modelrunner.exceptions.LoadEngineException;
-import io.bioimage.modelrunner.exceptions.LoadModelException;
-import io.bioimage.modelrunner.exceptions.RunModelException;
 import io.bioimage.modelrunner.model.Model;
 import io.bioimage.modelrunner.numpy.DecodeNumpy;
 import io.bioimage.modelrunner.tensor.Tensor;
@@ -62,6 +60,9 @@ import net.imglib2.view.Views;
  * 
  */
 public class ContinuousIntegration {
+
+	private static Map<String, String> downloadedModelsCorrectly = new HashMap<String, String>();
+	private static Map<String, String> downloadedModelsIncorrectly = new HashMap<String, String>();
 	
 	public static void main(String[] args) throws IOException {
 		
@@ -262,20 +263,35 @@ public class ContinuousIntegration {
 	
 	private static Map<String, String> testModelDownload(ModelDescriptor rd) {
 		String error = null;
-		try {
-			BioimageioRepo br = BioimageioRepo.connect();
-			String folder = br.downloadByName(rd.getName(), "models");
-			rd.addModelPath(Paths.get(folder));
-		} catch (Exception ex) {
-			error = ex.toString();
+		if (downloadedModelsCorrectly.keySet().contains(rd.getName())) {
+			rd.addModelPath(Paths.get(downloadedModelsCorrectly.get(rd.getName())));
+		} else if (downloadedModelsIncorrectly.keySet().contains(rd.getName())) {
+			error = downloadedModelsIncorrectly.get(rd.getName());
+		} else {
+			error = downloadModel(rd);
 		}
 		Map<String, String> downloadTest = new LinkedHashMap<String, String>();
 		downloadTest.put("name", "JDLL is able to download model");
 		downloadTest.put("status", error == null ? "passed" : "failed");
-		downloadTest.put("error", error);
+		downloadTest.put("error", "unable to download model");
+		downloadTest.put("traceback", error);
 		downloadTest.put("source_name", rd.getName());
 		downloadTest.put("JDLL_VERSION", getJDLLVersion());
 		return downloadTest;
+	}
+	
+	private static String downloadModel(ModelDescriptor rd) {
+		String error = null;
+		try {
+			BioimageioRepo br = BioimageioRepo.connect();
+			String folder = br.downloadByName(rd.getName(), "models");
+			rd.addModelPath(Paths.get(folder));
+			downloadedModelsCorrectly.put(rd.getName(), folder);
+		} catch (Exception ex) {
+			error = ex.toString();
+			downloadedModelsIncorrectly.put(rd.getName(), error);
+		}
+		return error;
 	}
 	
 	private static < T extends RealType< T > & NativeType< T > >
