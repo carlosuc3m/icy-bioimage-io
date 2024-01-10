@@ -333,6 +333,7 @@ public class ContinuousIntegration {
 				try {
 					preproc = JavaProcessing.definePreprocessing(transform.getName(), transform.getKwargs());
 				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
 					return failInferenceTest(rd.getName(), "pre-processing transformation not supported by JDLL: " + transform.getName(), e.toString());
 				}
 				inputTensor = preproc.execute(rd.getInputTensors().get(i), inputTensor);
@@ -347,6 +348,7 @@ public class ContinuousIntegration {
 		try {
 			engineInfo = EngineInfo.defineCompatibleDLEngineWithRdfYamlWeights(ww);
 		} catch (IllegalArgumentException | IOException e) {
+			e.printStackTrace();
 			return failInferenceTest(rd.getName(), "selected weights not supported by JDLL: " + ww.getFramework(), e.toString());
 		}
 		Model model;
@@ -354,11 +356,13 @@ public class ContinuousIntegration {
 			model = Model.createDeepLearningModel(rd.getModelPath(), rd.getModelPath() + File.separator + ww.getSourceFileName(), engineInfo);
 			model.loadModel();
 		} catch (Exception e) {
+			e.printStackTrace();
 			return failInferenceTest(rd.getName(), "unable to instantiate/load model", e.toString());
 		}
 		try {
 			model.runModel(inps, outs);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return failInferenceTest(rd.getName(), "unable to run model", e.toString());
 		}
 
@@ -371,6 +375,7 @@ public class ContinuousIntegration {
 				try {
 					preproc = JavaProcessing.definePreprocessing(transform.getName(), transform.getKwargs());
 				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
 					return failInferenceTest(rd.getName(), "post-processing transformation not supported by JDLL: " + transform.getName(), e.toString());
 				}
 				tt = preproc.execute(rd.getInputTensors().get(i), tt);
@@ -379,6 +384,7 @@ public class ContinuousIntegration {
 			try {
 				rai = DecodeNumpy.retrieveImgLib2FromNpy(rd.getTestOutputs().get(i).getLocalPath().toAbsolutePath().toString());
 			} catch (IOException e) {
+				e.printStackTrace();
 				return failInferenceTest(rd.getName(), "unable to open test output: " + rd.getTestOutputs().get(i).getString(), e.toString());
 			}
 			LoopBuilder.setImages( tt.getData(), rai )
