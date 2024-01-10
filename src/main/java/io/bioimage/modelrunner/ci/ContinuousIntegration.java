@@ -43,6 +43,7 @@ import io.bioimage.modelrunner.bioimageio.description.exceptions.ModelSpecsExcep
 import io.bioimage.modelrunner.bioimageio.description.weights.ModelWeight;
 import io.bioimage.modelrunner.bioimageio.description.weights.WeightFormat;
 import io.bioimage.modelrunner.engine.EngineInfo;
+import io.bioimage.modelrunner.engine.installation.EngineInstall;
 import io.bioimage.modelrunner.model.Model;
 import io.bioimage.modelrunner.numpy.DecodeNumpy;
 import io.bioimage.modelrunner.tensor.Tensor;
@@ -84,6 +85,8 @@ public class ContinuousIntegration {
 		PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:" + resourceID + File.separator + versionID + File.separator + Constants.RDF_FNAME);
 
         List<Path> rdfFiles = Files.walk(rdfDir).filter(matcher::matches).collect(Collectors.toList());
+        EngineInstall installer = EngineInstall.createInstaller();
+		installer.basicEngineInstallation();
 		
 		for (Path rdfPath : rdfFiles) {
 			String testName = "Reproduce ouptuts with JDLL " + postfix;
