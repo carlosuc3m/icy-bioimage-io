@@ -12,7 +12,7 @@
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: JDLL is able to download model (torchscript)
   status: passed
-  error: unable to download model
+  error: null
   traceback: null
   source_name: HPA Nucleus Segmentation (DPNUnet)
   JDLL_VERSION: 0.5.5-SNAPSHOT

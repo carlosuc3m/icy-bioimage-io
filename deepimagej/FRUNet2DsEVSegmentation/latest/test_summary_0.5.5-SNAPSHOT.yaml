@@ -2,13 +2,23 @@
   status: failed
   error: unable to instantiate/load model
   source_name: Small Extracellular Vesicle TEM Segmentation (Fully Residual U-Net)
-  traceback: java.lang.NullPointerException
+  traceback: "java.lang.NullPointerException\n\tat java.base/java.util.Objects.requireNonNull(Objects.java:221)\n\
+    \tat io.bioimage.modelrunner.model.Model.createDeepLearningModel(Model.java:166)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelInference(ContinuousIntegration.java:365)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:254)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: reproduce test outputs from test inputs (tensorflow_js)
   status: failed
   error: unable to instantiate/load model
   source_name: Small Extracellular Vesicle TEM Segmentation (Fully Residual U-Net)
-  traceback: java.lang.NullPointerException
+  traceback: "java.lang.NullPointerException\n\tat java.base/java.util.Objects.requireNonNull(Objects.java:221)\n\
+    \tat io.bioimage.modelrunner.model.Model.createDeepLearningModel(Model.java:166)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelInference(ContinuousIntegration.java:365)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:254)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: load resource description (keras_hdf5)
   status: passed
@@ -24,7 +34,7 @@
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: JDLL is able to download model (keras_hdf5)
   status: passed
-  error: unable to download model
+  error: null
   traceback: null
   source_name: Small Extracellular Vesicle TEM Segmentation (Fully Residual U-Net)
   JDLL_VERSION: 0.5.5-SNAPSHOT
@@ -42,13 +52,16 @@
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: JDLL is able to download model (tensorflow_js)
   status: passed
-  error: unable to download model
+  error: null
   traceback: null
   source_name: Small Extracellular Vesicle TEM Segmentation (Fully Residual U-Net)
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT (tensorflow_saved_model_bundle)
   status: failed
-  error: java.lang.NullPointerException
-  traceback: java.lang.NullPointerException
+  error: unable to perform tests
+  traceback: "java.lang.NullPointerException\n\tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelInference(ContinuousIntegration.java:399)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:254)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/deepimagej/FRUNet2DsEVSegmentation/latest/rdf.yaml
   JDLL_VERSION: 0.5.5-SNAPSHOT

@@ -1,14 +1,15 @@
 - name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT (tensorflow_saved_model_bundle)
   status: failed
-  error: "java.lang.IllegalArgumentException: Processing method 'scale_range' failed\
-    \ throwing an InvocationTargetException. Go to the following link to see valid\
-    \ transformations:https://github.com/bioimage-io/core-bioimage-io-java/tree/master/src/main/java/io/bioimage/specification/transformation.\
-    \ \n\njava.lang.IllegalArgumentException: At the moment, only allowed scaling\
-    \ of planes."
+  error: unable to perform tests
   traceback: "java.lang.IllegalArgumentException: Processing method 'scale_range'\
     \ failed throwing an InvocationTargetException. Go to the following link to see\
     \ valid transformations:https://github.com/bioimage-io/core-bioimage-io-java/tree/master/src/main/java/io/bioimage/specification/transformation.\
     \ \n\njava.lang.IllegalArgumentException: At the moment, only allowed scaling\
-    \ of planes."
+    \ of planes.\n\tat io.bioimage.modelrunner.ci.JavaProcessing.executeJavaTransformation(JavaProcessing.java:247)\n\
+    \tat io.bioimage.modelrunner.ci.JavaProcessing.execute(JavaProcessing.java:116)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelInference(ContinuousIntegration.java:348)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:254)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.8421755/8432366/rdf.yaml
   JDLL_VERSION: 0.5.5-SNAPSHOT

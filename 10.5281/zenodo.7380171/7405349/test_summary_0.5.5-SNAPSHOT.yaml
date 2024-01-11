@@ -2,7 +2,15 @@
   status: failed
   error: unable to run model
   source_name: Drosophila epithelia cell boundary segmentation of 2D projections
-  traceback: 'java.lang.IllegalArgumentException: Unsupported tensor type: class net.imglib2.type.numeric.integer.UnsignedByteType'
+  traceback: "java.lang.IllegalArgumentException: Unsupported tensor type: class net.imglib2.type.numeric.integer.UnsignedByteType\n\
+    \tat io.bioimage.modelrunner.tensorflow.v2.api030.tensor.mappedbuffer.ImgLib2ToMappedBuffer.findTotalLengthFile(ImgLib2ToMappedBuffer.java:279)\n\
+    \tat io.bioimage.modelrunner.tensorflow.v2.api030.Tensorflow2Interface.createTensorsForInterprocessing(Tensorflow2Interface.java:583)\n\
+    \tat io.bioimage.modelrunner.tensorflow.v2.api030.Tensorflow2Interface.runInterprocessing(Tensorflow2Interface.java:345)\n\
+    \tat io.bioimage.modelrunner.tensorflow.v2.api030.Tensorflow2Interface.run(Tensorflow2Interface.java:301)\n\
+    \tat io.bioimage.modelrunner.model.Model.runModel(Model.java:510)\n\tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelInference(ContinuousIntegration.java:372)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:254)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: load resource description (tensorflow_saved_model_bundle)
   status: passed
@@ -18,7 +26,7 @@
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: JDLL is able to download model (tensorflow_saved_model_bundle)
   status: passed
-  error: unable to download model
+  error: null
   traceback: null
   source_name: Drosophila epithelia cell boundary segmentation of 2D projections
   JDLL_VERSION: 0.5.5-SNAPSHOT

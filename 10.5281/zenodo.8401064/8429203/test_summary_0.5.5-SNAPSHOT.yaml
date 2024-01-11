@@ -1,12 +1,19 @@
 - name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT (pytorch_state_dict)
   status: failed
-  error: 'java.lang.IllegalArgumentException: Setter for argument ''eps'' of the processing
-    transformation ''zero_mean_unit_variance'' of tensor ''input0'' not found in the
-    Java transformation class ''io.bioimage.modelrunner.transformations.ZeroMeanUnitVarianceTransformation''.
-    A method called ''setEps'' should be present.'
-  traceback: 'java.lang.IllegalArgumentException: Setter for argument ''eps'' of the
-    processing transformation ''zero_mean_unit_variance'' of tensor ''input0'' not
-    found in the Java transformation class ''io.bioimage.modelrunner.transformations.ZeroMeanUnitVarianceTransformation''.
-    A method called ''setEps'' should be present.'
+  error: unable to perform tests
+  traceback: "java.lang.IllegalArgumentException: Setter for argument 'eps' of the\
+    \ processing transformation 'zero_mean_unit_variance' of tensor 'input0' not found\
+    \ in the Java transformation class 'io.bioimage.modelrunner.transformations.ZeroMeanUnitVarianceTransformation'.\
+    \ A method called 'setEps' should be present.\n\tat io.bioimage.modelrunner.ci.JavaProcessing.getArgumentSetterName(JavaProcessing.java:392)\n\
+    \tat io.bioimage.modelrunner.ci.JavaProcessing.setArg(JavaProcessing.java:370)\n\
+    \tat io.bioimage.modelrunner.ci.JavaProcessing.createInstanceWitArgs(JavaProcessing.java:354)\n\
+    \tat io.bioimage.modelrunner.ci.JavaProcessing.executeMethodWithArgs(JavaProcessing.java:311)\n\
+    \tat io.bioimage.modelrunner.ci.JavaProcessing.runJavaTransformationWithArgs(JavaProcessing.java:290)\n\
+    \tat io.bioimage.modelrunner.ci.JavaProcessing.executeJavaTransformation(JavaProcessing.java:220)\n\
+    \tat io.bioimage.modelrunner.ci.JavaProcessing.execute(JavaProcessing.java:116)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelInference(ContinuousIntegration.java:348)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:254)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.8401064/8429203/rdf.yaml
   JDLL_VERSION: 0.5.5-SNAPSHOT

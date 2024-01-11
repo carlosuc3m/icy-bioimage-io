@@ -2,7 +2,12 @@
   status: failed
   error: unable to instantiate/load model
   source_name: PlatynereisEMnucleiSegmentationBoundaryModel
-  traceback: java.lang.NullPointerException
+  traceback: "java.lang.NullPointerException\n\tat java.base/java.util.Objects.requireNonNull(Objects.java:221)\n\
+    \tat io.bioimage.modelrunner.model.Model.createDeepLearningModel(Model.java:166)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelInference(ContinuousIntegration.java:365)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:254)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: load resource description (torchscript)
   status: passed
@@ -18,7 +23,7 @@
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: JDLL is able to download model (torchscript)
   status: passed
-  error: unable to download model
+  error: null
   traceback: null
   source_name: PlatynereisEMnucleiSegmentationBoundaryModel
   JDLL_VERSION: 0.5.5-SNAPSHOT
@@ -42,7 +47,7 @@
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: JDLL is able to download model (pytorch_state_dict)
   status: passed
-  error: unable to download model
+  error: null
   traceback: null
   source_name: PlatynereisEMnucleiSegmentationBoundaryModel
   JDLL_VERSION: 0.5.5-SNAPSHOT

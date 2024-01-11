@@ -13,8 +13,13 @@
 - name: JDLL is able to download model (tensorflow_saved_model_bundle)
   status: failed
   error: unable to download model
-  traceback: 'java.lang.IllegalArgumentException: The provided name does not correspond
-    to an existing Bioiamge.io online repository model.'
+  traceback: "java.lang.IllegalArgumentException: The provided name does not correspond\
+    \ to an existing Bioiamge.io online repository model.\n\tat io.bioimage.modelrunner.bioimageio.BioimageioRepo.downloadByName(BioimageioRepo.java:603)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.downloadModel(ContinuousIntegration.java:294)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelDownload(ContinuousIntegration.java:278)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:253)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
   source_name: N2V SEM Demo
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: reproduce test inputs from test outptus for tensorflow_saved_model_bundle

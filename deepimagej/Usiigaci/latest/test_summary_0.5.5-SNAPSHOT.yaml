@@ -2,5 +2,12 @@
   status: failed
   error: Missing/Invalid weight formats for deepimagej/Usiigaci/latest
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/deepimagej/Usiigaci/latest/rdf.yaml
-  traceback: java.lang.NullPointerException
+  traceback: "java.lang.NullPointerException\n\tat io.bioimage.modelrunner.versionmanagement.SupportedVersions.findVersionInJSON(SupportedVersions.java:192)\n\
+    \tat io.bioimage.modelrunner.versionmanagement.SupportedVersions.getCorrespondingJavaVersion(SupportedVersions.java:125)\n\
+    \tat io.bioimage.modelrunner.versionmanagement.SupportedVersions.getJavaVersionForPythonVersion(SupportedVersions.java:258)\n\
+    \tat io.bioimage.modelrunner.bioimageio.description.weights.TfWeights.setCompatibleVersion(TfWeights.java:343)\n\
+    \tat io.bioimage.modelrunner.bioimageio.description.weights.TfWeights.<init>(TfWeights.java:107)\n\
+    \tat io.bioimage.modelrunner.bioimageio.description.weights.ModelWeight.build(ModelWeight.java:91)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:124)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
   JDLL_VERSION: 0.5.5-SNAPSHOT

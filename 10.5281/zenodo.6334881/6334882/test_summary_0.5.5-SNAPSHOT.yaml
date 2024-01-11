@@ -1,6 +1,9 @@
 - name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT (pytorch_state_dict)
   status: failed
-  error: java.lang.NullPointerException
-  traceback: java.lang.NullPointerException
+  error: unable to perform tests
+  traceback: "java.lang.NullPointerException\n\tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelInference(ContinuousIntegration.java:334)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:254)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.6334881/6334882/rdf.yaml
   JDLL_VERSION: 0.5.5-SNAPSHOT

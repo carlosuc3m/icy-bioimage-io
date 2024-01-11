@@ -2,5 +2,7 @@
   status: failed
   error: Missing/Invalid weight formats for biapy/notebook_classification_2d/latest
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/biapy/notebook_classification_2d/latest/rdf.yaml
-  traceback: java.lang.NullPointerException
+  traceback: "java.lang.NullPointerException\n\tat io.bioimage.modelrunner.bioimageio.description.weights.ModelWeight.build(ModelWeight.java:76)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:124)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
   JDLL_VERSION: 0.5.5-SNAPSHOT

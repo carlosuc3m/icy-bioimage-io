@@ -2,14 +2,24 @@
   status: failed
   error: unable to instantiate/load model
   source_name: Neuron Segmentation in 2D EM (Membrane)
-  traceback: java.lang.NullPointerException
+  traceback: "java.lang.NullPointerException\n\tat java.base/java.util.Objects.requireNonNull(Objects.java:221)\n\
+    \tat io.bioimage.modelrunner.model.Model.createDeepLearningModel(Model.java:166)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelInference(ContinuousIntegration.java:365)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:254)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT (tensorflow_saved_model_bundle)
   status: failed
-  error: 'java.lang.IllegalArgumentException: Unsupported data type of numpy array:
-    boolean'
-  traceback: 'java.lang.IllegalArgumentException: Unsupported data type of numpy array:
-    boolean'
+  error: unable to perform tests
+  traceback: "java.lang.IllegalArgumentException: Unsupported data type of numpy array:\
+    \ boolean\n\tat io.bioimage.modelrunner.numpy.DecodeNumpy.build(DecodeNumpy.java:545)\n\
+    \tat io.bioimage.modelrunner.numpy.DecodeNumpy.decodeNumpyFromByteArrayStream(DecodeNumpy.java:354)\n\
+    \tat io.bioimage.modelrunner.numpy.DecodeNumpy.retrieveImgLib2FromNpy(DecodeNumpy.java:182)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelInference(ContinuousIntegration.java:394)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:254)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.5817052/5906839/rdf.yaml
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: load resource description (keras_hdf5)
@@ -26,7 +36,7 @@
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: JDLL is able to download model (keras_hdf5)
   status: passed
-  error: unable to download model
+  error: null
   traceback: null
   source_name: Neuron Segmentation in 2D EM (Membrane)
   JDLL_VERSION: 0.5.5-SNAPSHOT
