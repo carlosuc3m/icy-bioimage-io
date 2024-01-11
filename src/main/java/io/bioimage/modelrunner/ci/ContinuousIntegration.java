@@ -332,7 +332,7 @@ public class ContinuousIntegration {
 			RandomAccessibleInterval<T> rai;
 			try {
 				rai = DecodeNumpy.retrieveImgLib2FromNpy(rd.getTestInputs().get(i).getLocalPath().toAbsolutePath().toString());
-			} catch (IOException e) {
+			} catch (Exception e) {
 				return failInferenceTest(rd.getName(), "unable to open test input: " + rd.getTestInputs().get(i).getString(), stackTrace(e));
 			}
 			Tensor<T> inputTensor = Tensor.build(rd.getInputTensors().get(i).getName(), rd.getInputTensors().get(i).getAxesOrder(), rai);
@@ -341,7 +341,7 @@ public class ContinuousIntegration {
 				JavaProcessing preproc;
 				try {
 					preproc = JavaProcessing.definePreprocessing(transform.getName(), transform.getKwargs());
-				} catch (ClassNotFoundException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 					return failInferenceTest(rd.getName(), "pre-processing transformation not supported by JDLL: " + transform.getName(), stackTrace(e));
 				}
@@ -356,7 +356,7 @@ public class ContinuousIntegration {
 		EngineInfo engineInfo;
 		try {
 			engineInfo = EngineInfo.defineCompatibleDLEngineWithRdfYamlWeights(ww);
-		} catch (IllegalArgumentException | IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return failInferenceTest(rd.getName(), "selected weights not supported by JDLL: " + ww.getFramework(), stackTrace(e));
 		}
@@ -383,7 +383,7 @@ public class ContinuousIntegration {
 				JavaProcessing preproc;
 				try {
 					preproc = JavaProcessing.definePreprocessing(transform.getName(), transform.getKwargs());
-				} catch (ClassNotFoundException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 					return failInferenceTest(rd.getName(), "post-processing transformation not supported by JDLL: " + transform.getName(), stackTrace(e));
 				}
@@ -392,7 +392,7 @@ public class ContinuousIntegration {
 			RandomAccessibleInterval<T> rai;
 			try {
 				rai = DecodeNumpy.retrieveImgLib2FromNpy(rd.getTestOutputs().get(i).getLocalPath().toAbsolutePath().toString());
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				return failInferenceTest(rd.getName(), "unable to open test output: " + rd.getTestOutputs().get(i).getString(), stackTrace(e));
 			}
