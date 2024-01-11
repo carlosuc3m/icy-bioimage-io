@@ -407,7 +407,7 @@ public class ContinuousIntegration {
 		
 		
 		Map<String, String> typeTest = new LinkedHashMap<String, String>();
-		typeTest.put("name", "reproduce test outputs from test inputs\"");
+		typeTest.put("name", "reproduce test outputs from test inputs");
 		typeTest.put("status", "passed");
 		typeTest.put("error", null);
 		typeTest.put("source_name", rd.getName());
