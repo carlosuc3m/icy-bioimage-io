@@ -22,6 +22,8 @@ package io.bioimage.modelrunner.ci;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -100,6 +102,7 @@ public class ContinuousIntegration {
 			} catch (Exception ex) {
 				error = "Unable to load " + Constants.RDF_FNAME + ": " + ex.toString();
 				status = "failed";
+				traceback = stackTrace(ex);
 				ex.printStackTrace();
 			}
 
@@ -122,7 +125,7 @@ public class ContinuousIntegration {
 			} catch (Exception ex) {
 				status = "failed";
 				error = "Missing/Invalid weight formats for " + rdID;
-				traceback = ex.toString();
+				traceback = stackTrace(ex);
 			}
 			
 			if (weights != null && weights.gettAllSupportedWeightObjects().size() == 0) {
@@ -153,10 +156,11 @@ public class ContinuousIntegration {
 				try {
 					summariesWeightFormat = testResource(rdfPath.toAbsolutePath().toString(), ww, 4, "model");
 				} catch (Exception ex) {
+					ex.printStackTrace();
 					summaryWeightFormat.put("name", testName);
 					summaryWeightFormat.put("status", "failed");
-					summaryWeightFormat.put("error", ex.toString());
-					summaryWeightFormat.put("traceback", ex.toString());
+					summaryWeightFormat.put("error", "unable to perform tests");
+					summaryWeightFormat.put("traceback", stackTrace(ex));
 					summaryWeightFormat.put("source_name", rdfPath.toAbsolutePath().toString());
 					summaryWeightFormat.putAll(summaryDefaults);
 					summariesWeightFormat.add(summaryWeightFormat);
@@ -228,8 +232,8 @@ public class ContinuousIntegration {
 		try {
 			rd = ModelDescriptor.readFromLocalFile(rdf, false);
 		} catch (ModelSpecsException e) {
-			error = e.toString();
-			traceback = e.toString();
+			error = "unable to read rdf.yaml file";
+			traceback = stackTrace(e);
 		}
 
 		List<Object> tests = new ArrayList<Object>();
@@ -291,7 +295,7 @@ public class ContinuousIntegration {
 			rd.addModelPath(Paths.get(folder));
 			downloadedModelsCorrectly.put(rd.getName(), folder);
 		} catch (Exception ex) {
-			error = ex.toString();
+			error = stackTrace(ex);
 			downloadedModelsIncorrectly.put(rd.getName(), error);
 		}
 		return error;
@@ -327,7 +331,7 @@ public class ContinuousIntegration {
 			try {
 				rai = DecodeNumpy.retrieveImgLib2FromNpy(rd.getTestInputs().get(i).getLocalPath().toAbsolutePath().toString());
 			} catch (IOException e) {
-				return failInferenceTest(rd.getName(), "unable to open test input: " + rd.getTestInputs().get(i).getString(), e.toString());
+				return failInferenceTest(rd.getName(), "unable to open test input: " + rd.getTestInputs().get(i).getString(), stackTrace(e));
 			}
 			Tensor<T> inputTensor = Tensor.build(rd.getInputTensors().get(i).getName(), rd.getInputTensors().get(i).getAxesOrder(), rai);
 			if (rd.getInputTensors().get(i).getPreprocessing().size() > 0) {
@@ -337,7 +341,7 @@ public class ContinuousIntegration {
 					preproc = JavaProcessing.definePreprocessing(transform.getName(), transform.getKwargs());
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
-					return failInferenceTest(rd.getName(), "pre-processing transformation not supported by JDLL: " + transform.getName(), e.toString());
+					return failInferenceTest(rd.getName(), "pre-processing transformation not supported by JDLL: " + transform.getName(), stackTrace(e));
 				}
 				inputTensor = preproc.execute(rd.getInputTensors().get(i), inputTensor);
 			}
@@ -352,7 +356,7 @@ public class ContinuousIntegration {
 			engineInfo = EngineInfo.defineCompatibleDLEngineWithRdfYamlWeights(ww);
 		} catch (IllegalArgumentException | IOException e) {
 			e.printStackTrace();
-			return failInferenceTest(rd.getName(), "selected weights not supported by JDLL: " + ww.getFramework(), e.toString());
+			return failInferenceTest(rd.getName(), "selected weights not supported by JDLL: " + ww.getFramework(), stackTrace(e));
 		}
 		Model model;
 		try {
@@ -360,13 +364,13 @@ public class ContinuousIntegration {
 			model.loadModel();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return failInferenceTest(rd.getName(), "unable to instantiate/load model", e.toString());
+			return failInferenceTest(rd.getName(), "unable to instantiate/load model", stackTrace(e));
 		}
 		try {
 			model.runModel(inps, outs);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return failInferenceTest(rd.getName(), "unable to run model", e.toString());
+			return failInferenceTest(rd.getName(), "unable to run model", stackTrace(e));
 		}
 
 		List<Double> maxDif = new ArrayList<Double>();
@@ -379,7 +383,7 @@ public class ContinuousIntegration {
 					preproc = JavaProcessing.definePreprocessing(transform.getName(), transform.getKwargs());
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
-					return failInferenceTest(rd.getName(), "post-processing transformation not supported by JDLL: " + transform.getName(), e.toString());
+					return failInferenceTest(rd.getName(), "post-processing transformation not supported by JDLL: " + transform.getName(), stackTrace(e));
 				}
 				tt = preproc.execute(rd.getInputTensors().get(i), tt);
 			}
@@ -388,7 +392,7 @@ public class ContinuousIntegration {
 				rai = DecodeNumpy.retrieveImgLib2FromNpy(rd.getTestOutputs().get(i).getLocalPath().toAbsolutePath().toString());
 			} catch (IOException e) {
 				e.printStackTrace();
-				return failInferenceTest(rd.getName(), "unable to open test output: " + rd.getTestOutputs().get(i).getString(), e.toString());
+				return failInferenceTest(rd.getName(), "unable to open test output: " + rd.getTestOutputs().get(i).getString(), stackTrace(e));
 			}
 			LoopBuilder.setImages( tt.getData(), rai )
 			.multiThreaded().forEachPixel( ( j, o ) -> o.set( (T) new FloatType(o.getRealFloat() - j.getRealFloat())) );
@@ -436,5 +440,17 @@ public class ContinuousIntegration {
 					max.set( type );
 			}
 			return Math.max(-min.getRealDouble(), min.getRealDouble());
+	}
+
+	/** Dumps the given exception, including stack trace, to a string. 
+	 * 
+	 * @param t
+	 * 	the given exception {@link Throwable}
+	 * @return the String containing the whole exception trace
+	 */
+	public static String stackTrace(Throwable t) {
+		StringWriter sw = new StringWriter();
+		t.printStackTrace(new PrintWriter(sw));
+		return sw.toString();
 	}
 }
