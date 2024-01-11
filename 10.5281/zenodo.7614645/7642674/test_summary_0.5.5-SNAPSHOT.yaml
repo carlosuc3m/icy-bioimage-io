@@ -9,6 +9,18 @@
     \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
     \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
   JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: reproduce test outputs from test inputs (torchscript)
+  status: passed
+  error: null
+  source_name: HyLFM-Net-stat
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: reproduce test outputs from test inputs (onnx)
+  status: passed
+  error: null
+  source_name: HyLFM-Net-stat
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: load resource description (pytorch_state_dict)
   status: passed
   error: null
@@ -45,12 +57,6 @@
   traceback: null
   source_name: HyLFM-Net-stat
   JDLL_VERSION: 0.5.5-SNAPSHOT
-- name: reproduce test outputs from test inputs" (torchscript)
-  status: passed
-  error: null
-  source_name: HyLFM-Net-stat
-  traceback: null
-  JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: load resource description (onnx)
   status: passed
   error: null
@@ -68,10 +74,4 @@
   error: null
   traceback: null
   source_name: HyLFM-Net-stat
-  JDLL_VERSION: 0.5.5-SNAPSHOT
-- name: reproduce test outputs from test inputs" (onnx)
-  status: passed
-  error: null
-  source_name: HyLFM-Net-stat
-  traceback: null
   JDLL_VERSION: 0.5.5-SNAPSHOT

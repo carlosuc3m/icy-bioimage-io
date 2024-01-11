@@ -1,3 +1,9 @@
+- name: reproduce test outputs from test inputs (torchscript)
+  status: passed
+  error: null
+  source_name: HPA Cell Segmentation (DPNUnet)
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: load resource description (torchscript)
   status: passed
   error: null
@@ -15,10 +21,4 @@
   error: null
   traceback: null
   source_name: HPA Cell Segmentation (DPNUnet)
-  JDLL_VERSION: 0.5.5-SNAPSHOT
-- name: reproduce test outputs from test inputs" (torchscript)
-  status: passed
-  error: null
-  source_name: HPA Cell Segmentation (DPNUnet)
-  traceback: null
   JDLL_VERSION: 0.5.5-SNAPSHOT

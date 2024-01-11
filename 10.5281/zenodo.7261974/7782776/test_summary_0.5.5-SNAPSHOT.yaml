@@ -1,3 +1,9 @@
+- name: reproduce test outputs from test inputs (tensorflow_saved_model_bundle)
+  status: passed
+  error: null
+  source_name: B. Sutilist bacteria segmentation - Widefield microscopy - 2D UNet
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: reproduce test outputs from test inputs (keras_hdf5)
   status: failed
   error: unable to instantiate/load model
@@ -26,12 +32,6 @@
   error: null
   traceback: null
   source_name: B. Sutilist bacteria segmentation - Widefield microscopy - 2D UNet
-  JDLL_VERSION: 0.5.5-SNAPSHOT
-- name: reproduce test outputs from test inputs" (tensorflow_saved_model_bundle)
-  status: passed
-  error: null
-  source_name: B. Sutilist bacteria segmentation - Widefield microscopy - 2D UNet
-  traceback: null
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: load resource description (keras_hdf5)
   status: passed

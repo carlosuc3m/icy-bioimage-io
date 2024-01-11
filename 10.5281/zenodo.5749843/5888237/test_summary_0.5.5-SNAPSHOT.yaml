@@ -9,6 +9,12 @@
     \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
     \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
   JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: reproduce test outputs from test inputs (tensorflow_saved_model_bundle)
+  status: passed
+  error: null
+  source_name: Cell Segmentation from Membrane Staining for Plant Tissues
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: load resource description (keras_hdf5)
   status: passed
   error: null
@@ -44,10 +50,4 @@
   error: null
   traceback: null
   source_name: Cell Segmentation from Membrane Staining for Plant Tissues
-  JDLL_VERSION: 0.5.5-SNAPSHOT
-- name: reproduce test outputs from test inputs" (tensorflow_saved_model_bundle)
-  status: passed
-  error: null
-  source_name: Cell Segmentation from Membrane Staining for Plant Tissues
-  traceback: null
   JDLL_VERSION: 0.5.5-SNAPSHOT

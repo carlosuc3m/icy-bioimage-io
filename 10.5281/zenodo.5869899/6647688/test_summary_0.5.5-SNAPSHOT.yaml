@@ -1,3 +1,9 @@
+- name: reproduce test outputs from test inputs (torchscript)
+  status: passed
+  error: null
+  source_name: LiveCellSegmentationBoundaryModel
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: reproduce test outputs from test inputs (pytorch_state_dict)
   status: failed
   error: unable to instantiate/load model
@@ -26,12 +32,6 @@
   error: null
   traceback: null
   source_name: LiveCellSegmentationBoundaryModel
-  JDLL_VERSION: 0.5.5-SNAPSHOT
-- name: reproduce test outputs from test inputs" (torchscript)
-  status: passed
-  error: null
-  source_name: LiveCellSegmentationBoundaryModel
-  traceback: null
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: load resource description (pytorch_state_dict)
   status: passed
