@@ -380,6 +380,7 @@ public class ContinuousIntegration {
 			Tensor<T> tt = (Tensor<T>) outs.get(i);
 			if (rd.getOutputTensors().get(i).getPostprocessing().size() > 0) {
 				TransformSpec transform = rd.getOutputTensors().get(i).getPostprocessing().get(0);
+				if (transform.getName().equals("python")) continue;
 				JavaProcessing preproc;
 				try {
 					preproc = JavaProcessing.definePreprocessing(transform.getName(), transform.getKwargs());
