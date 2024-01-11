@@ -1,9 +1,33 @@
-- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT (torchscript)
+- name: reproduce test outputs from test inputs (torchscript)
   status: failed
-  error: unable to perform tests
+  error: 'unable to open test input: https://raw.githubusercontent.com/deepimagej/models/master/skin_lesion_classification/0066.npy'
+  source_name: Skin lesions classification
   traceback: "java.lang.NullPointerException\n\tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelInference(ContinuousIntegration.java:334)\n\
     \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:254)\n\
     \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
     \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: load resource description (torchscript)
+  status: passed
+  error: null
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/deepimagej/SkinLesionClassification/latest/rdf.yaml
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: has expected resource type (torchscript)
+  status: passed
+  error: null
+  source_name: Skin lesions classification
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: JDLL is able to download model (torchscript)
+  status: failed
+  error: unable to download model
+  traceback: "java.lang.IllegalArgumentException: The provided name does not correspond\
+    \ to an existing Bioiamge.io online repository model.\n\tat io.bioimage.modelrunner.bioimageio.BioimageioRepo.downloadByName(BioimageioRepo.java:603)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.downloadModel(ContinuousIntegration.java:294)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelDownload(ContinuousIntegration.java:278)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:253)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
+  source_name: Skin lesions classification
   JDLL_VERSION: 0.5.5-SNAPSHOT

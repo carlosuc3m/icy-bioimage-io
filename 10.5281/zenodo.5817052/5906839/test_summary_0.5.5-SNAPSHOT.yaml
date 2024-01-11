@@ -1,3 +1,16 @@
+- name: reproduce test outputs from test inputs (tensorflow_saved_model_bundle)
+  status: failed
+  error: 'unable to open test output: https://zenodo.org/api/records/5906839/files/test_output.npy/content'
+  source_name: Neuron Segmentation in 2D EM (Membrane)
+  traceback: "java.lang.IllegalArgumentException: Unsupported data type of numpy array:\
+    \ boolean\n\tat io.bioimage.modelrunner.numpy.DecodeNumpy.build(DecodeNumpy.java:545)\n\
+    \tat io.bioimage.modelrunner.numpy.DecodeNumpy.decodeNumpyFromByteArrayStream(DecodeNumpy.java:354)\n\
+    \tat io.bioimage.modelrunner.numpy.DecodeNumpy.retrieveImgLib2FromNpy(DecodeNumpy.java:182)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelInference(ContinuousIntegration.java:394)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:254)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
+  JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: reproduce test outputs from test inputs (keras_hdf5)
   status: failed
   error: unable to instantiate/load model
@@ -9,18 +22,23 @@
     \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
     \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
   JDLL_VERSION: 0.5.5-SNAPSHOT
-- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT (tensorflow_saved_model_bundle)
-  status: failed
-  error: unable to perform tests
-  traceback: "java.lang.IllegalArgumentException: Unsupported data type of numpy array:\
-    \ boolean\n\tat io.bioimage.modelrunner.numpy.DecodeNumpy.build(DecodeNumpy.java:545)\n\
-    \tat io.bioimage.modelrunner.numpy.DecodeNumpy.decodeNumpyFromByteArrayStream(DecodeNumpy.java:354)\n\
-    \tat io.bioimage.modelrunner.numpy.DecodeNumpy.retrieveImgLib2FromNpy(DecodeNumpy.java:182)\n\
-    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelInference(ContinuousIntegration.java:394)\n\
-    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:254)\n\
-    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
-    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
+- name: load resource description (tensorflow_saved_model_bundle)
+  status: passed
+  error: null
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.5817052/5906839/rdf.yaml
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: has expected resource type (tensorflow_saved_model_bundle)
+  status: passed
+  error: null
+  source_name: Neuron Segmentation in 2D EM (Membrane)
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: JDLL is able to download model (tensorflow_saved_model_bundle)
+  status: passed
+  error: null
+  traceback: null
+  source_name: Neuron Segmentation in 2D EM (Membrane)
   JDLL_VERSION: 0.5.5-SNAPSHOT
 - name: load resource description (keras_hdf5)
   status: passed

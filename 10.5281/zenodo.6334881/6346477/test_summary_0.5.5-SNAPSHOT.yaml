@@ -1,9 +1,27 @@
-- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT (pytorch_state_dict)
+- name: reproduce test outputs from test inputs (pytorch_state_dict)
   status: failed
-  error: unable to perform tests
+  error: 'unable to open test input: https://zenodo.org/api/records/6346477/files/test_input.npy/content'
+  source_name: 2D UNet Arabidopsis Apical Stem Cells
   traceback: "java.lang.NullPointerException\n\tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelInference(ContinuousIntegration.java:334)\n\
     \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:254)\n\
     \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
     \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: load resource description (pytorch_state_dict)
+  status: passed
+  error: null
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/10.5281/zenodo.6334881/6346477/rdf.yaml
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: has expected resource type (pytorch_state_dict)
+  status: passed
+  error: null
+  source_name: 2D UNet Arabidopsis Apical Stem Cells
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: JDLL is able to download model (pytorch_state_dict)
+  status: passed
+  error: null
+  traceback: null
+  source_name: 2D UNet Arabidopsis Apical Stem Cells
   JDLL_VERSION: 0.5.5-SNAPSHOT

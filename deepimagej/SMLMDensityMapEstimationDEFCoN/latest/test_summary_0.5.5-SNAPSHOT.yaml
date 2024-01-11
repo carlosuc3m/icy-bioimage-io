@@ -1,9 +1,33 @@
-- name: Reproduce ouptuts with JDLL 0.5.5-SNAPSHOT (tensorflow_js)
+- name: reproduce test outputs from test inputs (tensorflow_js)
   status: failed
-  error: unable to perform tests
+  error: 'unable to open test input: https://raw.githubusercontent.com/deepimagej/models/master/defcon_density_map_estimation/exampleImage.npy'
+  source_name: SMLM Density Map Estimation (DEFCoN)
   traceback: "java.lang.NullPointerException\n\tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelInference(ContinuousIntegration.java:334)\n\
     \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:254)\n\
     \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
     \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: load resource description (tensorflow_js)
+  status: passed
+  error: null
   source_name: /home/runner/work/icy-bioimage-io/icy-bioimage-io/bioimageio-gh-pages/rdfs/deepimagej/SMLMDensityMapEstimationDEFCoN/latest/rdf.yaml
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: has expected resource type (tensorflow_js)
+  status: passed
+  error: null
+  source_name: SMLM Density Map Estimation (DEFCoN)
+  traceback: null
+  JDLL_VERSION: 0.5.5-SNAPSHOT
+- name: JDLL is able to download model (tensorflow_js)
+  status: failed
+  error: unable to download model
+  traceback: "java.lang.IllegalArgumentException: The provided name does not correspond\
+    \ to an existing Bioiamge.io online repository model.\n\tat io.bioimage.modelrunner.bioimageio.BioimageioRepo.downloadByName(BioimageioRepo.java:603)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.downloadModel(ContinuousIntegration.java:294)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testModelDownload(ContinuousIntegration.java:278)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.testResource(ContinuousIntegration.java:253)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.runTests(ContinuousIntegration.java:157)\n\
+    \tat io.bioimage.modelrunner.ci.ContinuousIntegration.main(ContinuousIntegration.java:78)\n"
+  source_name: SMLM Density Map Estimation (DEFCoN)
   JDLL_VERSION: 0.5.5-SNAPSHOT
