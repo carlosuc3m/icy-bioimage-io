@@ -303,6 +303,8 @@ public class ContinuousIntegration {
 	
 	private static < T extends RealType< T > & NativeType< T > >
 	Map<String, String> testModelInference(ModelDescriptor rd, WeightFormat ww, int decimal) {
+		System.out.println(rd.getName());
+		System.out.println(ww.getFramework());
 		Map<String, String> inferTest = new LinkedHashMap<String, String>();
 		inferTest.put("name", "reproduce test inputs from test outptus for " + ww.getFramework());
 		inferTest.put("source_name", rd.getName());
